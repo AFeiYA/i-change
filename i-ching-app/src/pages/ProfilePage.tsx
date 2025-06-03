@@ -1,81 +1,203 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { 
+    getUserStats, 
+    getUserPreferences, 
+    saveUserPreferences, 
+    getDivinationHistory, 
+    exportUserData, 
+    importUserData 
+} from '../services/dataService';
+import { UserStats, UserPreferences } from '../services/dataService';
 
 const ProfilePage: React.FC = () => {
-    const [divinationCount, setDivinationCount] = useState(
-        parseInt(localStorage.getItem('divinationCount') || '0')
-    );
-    
-    const [favoriteHexagrams, setFavoriteHexagrams] = useState<number[]>(
-        JSON.parse(localStorage.getItem('favoriteHexagrams') || '[]')
-    );
+    const [stats, setStats] = useState<UserStats>({ totalDivinations: 0, methodCounts: {}, favoriteMethods: [] });
+    const [preferences, setPreferences] = useState<UserPreferences>({ theme: 'light', language: 'zh-CN', autoSave: true });
+    const [isExporting, setIsExporting] = useState(false);
 
-    const clearHistory = () => {
-        localStorage.removeItem('divinationCount');
-        localStorage.removeItem('favoriteHexagrams');
-        setDivinationCount(0);
-        setFavoriteHexagrams([]);
-        alert('历史记录已清除');
+    useEffect(() => {
+        loadUserData();
+    }, []);
+
+    const loadUserData = () => {
+        setStats(getUserStats());
+        setPreferences(getUserPreferences());
+    };
+
+    const handlePreferenceChange = (key: string, value: any) => {
+        const newPreferences = { ...preferences, [key]: value };
+        setPreferences(newPreferences);
+        saveUserPreferences(newPreferences);
+    };
+
+    const handleExportData = async () => {
+        setIsExporting(true);
+        try {
+            const data = exportUserData();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `易经数据备份_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('数据导出成功！');
+        } catch (error) {
+            alert('导出失败，请重试。');
+        } finally {
+            setIsExporting(false);
+        }
+    };
+
+    const handleImportData = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const result = e.target && e.target.result;
+                    const data = JSON.parse(String(result));
+                    if (window.confirm('导入数据将覆盖现有数据，确定继续吗？')) {
+                        importUserData(data);
+                        loadUserData();
+                        alert('数据导入成功！');
+                    }
+                } catch (error) {
+                    alert('导入失败，文件格式不正确。');
+                }
+            };
+            reader.readAsText(file);
+        }
+    };
+
+    const getMethodName = (method: string) => {
+        switch (method) {
+            case 'random': return '快速占卜';
+            case 'coin': return '三币占卜';
+            case 'yarrow': return '蓍草占卜';
+            default: return method;
+        }
     };
 
     return (
         <div className="container">
-            <div className="detail">
+            <div className="profile-page">
                 <h1>👤 我的易经</h1>
                 
-                <section>
-                    <h2>📊 占卜统计</h2>
-                    <div className="stats">
-                        <div className="stat-item">
-                            <span className="stat-number">{divinationCount}</span>
-                            <span className="stat-label">总占卜次数</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-number">{favoriteHexagrams.length}</span>
-                            <span className="stat-label">收藏卦象</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>⭐ 收藏的卦象</h2>
-                    {favoriteHexagrams.length > 0 ? (
-                        <div className="favorite-list">
-                            {favoriteHexagrams.map(hexagramId => (
-                                <div key={hexagramId} className="favorite-item">
-                                    第{hexagramId}卦
+                <div className="profile-sections">
+                    {/* 统计信息部分 */}
+                    <section className="stats-section">
+                        <h2>📊 占卜统计</h2>
+                        <div className="stats-grid">
+                            <div className="stat-card">
+                                <div className="stat-number">{stats.totalDivinations}</div>
+                                <div className="stat-label">总占卜次数</div>
+                            </div>
+                            
+                            {Object.entries(stats.methodCounts).length > 0 && (
+                                <div className="method-stats">
+                                    <h3>各方法使用统计：</h3>
+                                    {Object.entries(stats.methodCounts).map(([method, count]) => (
+                                        <div key={method} className="method-stat">
+                                            <span className="method-name">{getMethodName(method)}</span>
+                                            <span className="method-count">{count} 次</span>
+                                            <div className="method-bar">
+                                                <div 
+                                                    className="method-progress" 
+                                                    style={{ width: `${(count / stats.totalDivinations) * 100}%` }}
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            )}
+
+                            {stats.favoriteMethods.length > 0 && (
+                                <div className="favorite-methods">
+                                    <h3>常用方法：</h3>
+                                    <div className="favorite-list">
+                                        {stats.favoriteMethods.map((method, index) => (
+                                            <span key={method} className="favorite-method">
+                                                {index + 1}. {getMethodName(method)}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    ) : (
-                        <p>暂无收藏的卦象</p>
-                    )}
-                </section>
+                    </section>
 
-                <section>
-                    <h2>🛠️ 设置</h2>
-                    <div className="settings">
-                        <button onClick={clearHistory} className="btn-danger">
-                            清除历史记录
-                        </button>
-                    </div>
-                </section>
+                    {/* 用户偏好设置 */}
+                    <section className="preferences-section">
+                        <h2>⚙️ 偏好设置</h2>
+                        <div className="preference-item">
+                            <label htmlFor="theme">主题：</label>
+                            <select 
+                                id="theme"
+                                value={preferences.theme} 
+                                onChange={(e) => handlePreferenceChange('theme', e.target.value)}
+                                className="preference-select"
+                            >
+                                <option value="light">浅色主题</option>
+                                <option value="dark">深色主题</option>
+                                <option value="auto">跟随系统</option>
+                            </select>
+                        </div>
 
-                <section>
-                    <h2>📱 应用信息</h2>
-                    <div className="app-info">
-                        <p><strong>版本：</strong>1.0.0</p>
-                        <p><strong>更新时间：</strong>2025年6月</p>
-                        <p><strong>开发者：</strong>易经爱好者</p>
-                    </div>
-                </section>
+                        <div className="preference-item">
+                            <label htmlFor="language">语言：</label>
+                            <select 
+                                id="language"
+                                value={preferences.language} 
+                                onChange={(e) => handlePreferenceChange('language', e.target.value)}
+                                className="preference-select"
+                            >
+                                <option value="zh-CN">简体中文</option>
+                                <option value="zh-TW">繁体中文</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
 
-                <section>
-                    <h2>💝 支持我们</h2>
-                    <p>
-                        如果您喜欢这个应用，请分享给更多朋友。
-                        让古老的智慧在现代生活中发光发热。
-                    </p>
-                </section>
+                        <div className="preference-item">
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    checked={preferences.autoSave} 
+                                    onChange={(e) => handlePreferenceChange('autoSave', e.target.checked)}
+                                />
+                                自动保存占卜记录
+                            </label>
+                        </div>
+                    </section>
+
+                    {/* 数据管理 */}
+                    <section className="data-section">
+                        <h2>💾 数据管理</h2>
+                        <div className="data-actions">
+                            <button 
+                                onClick={handleExportData}
+                                disabled={isExporting}
+                                className="export-btn"
+                            >
+                                {isExporting ? '导出中...' : '📤 导出数据'}
+                            </button>
+                            
+                            <label className="import-btn">
+                                📥 导入数据
+                                <input 
+                                    type="file" 
+                                    accept=".json"
+                                    onChange={handleImportData}
+                                    style={{ display: 'none' }}
+                                />
+                            </label>
+                        </div>
+                        <p className="data-info">
+                            导出的数据包含您的占卜历史、偏好设置等信息，可用于备份或在其他设备上恢复。
+                        </p>
+                    </section>
+                </div>
             </div>
         </div>
     );
