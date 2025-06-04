@@ -179,7 +179,12 @@ const DivinationPage: React.FC = () => {
                             hexagram={divinationResult.hexagram} 
                             changingLines={divinationResult.changingLines}
                             showLineDetails={true}
+                            enableLineClick={true}
                         />
+                        
+                        <div className="line-click-hint">
+                            💡 <strong>提示：</strong>点击任意爻线查看详细解析
+                        </div>
                         
                         {divinationResult.changingLines && divinationResult.changingLines.length > 0 && (
                             <div className="changing-lines">
@@ -191,6 +196,7 @@ const DivinationPage: React.FC = () => {
                                         <InteractiveHexagram 
                                             hexagram={divinationResult.secondaryHexagram}
                                             showLineDetails={false}
+                                            enableLineClick={true}
                                         />
                                     </div>
                                 )}

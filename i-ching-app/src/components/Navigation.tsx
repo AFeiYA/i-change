@@ -20,9 +20,11 @@ const Navigation: React.FC = () => {
       <nav className="nav">
         <Link to="/">
           <span>🎋 占卜</span>
-        </Link>
-        <Link to="/classics">
+        </Link>        <Link to="/classics">
           <span>📚 经典</span>
+        </Link>
+        <Link to="/line-analysis-demo">
+          <span>🔍 爻线解析</span>
         </Link>
         <Link to="/history">
           <span>📜 历史</span>
