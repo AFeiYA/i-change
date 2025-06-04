@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
+import { SoundEffects } from '../utils/soundEffects';
 import { 
     getUserStats, 
     getUserPreferences, 
@@ -10,6 +12,7 @@ import {
 import { UserStats, UserPreferences } from '../services/dataService';
 
 const ProfilePage: React.FC = () => {
+    const { theme, setTheme } = useTheme();
     const [stats, setStats] = useState<UserStats>({ totalDivinations: 0, methodCounts: {}, favoriteMethods: [] });
     const [preferences, setPreferences] = useState<UserPreferences>({ theme: 'light', language: 'zh-CN', autoSave: true });
     const [isExporting, setIsExporting] = useState(false);
@@ -20,13 +23,27 @@ const ProfilePage: React.FC = () => {
 
     const loadUserData = () => {
         setStats(getUserStats());
-        setPreferences(getUserPreferences());
+        const userPrefs = getUserPreferences();
+        setPreferences(userPrefs);
+        
+        // 同步音效设置
+        SoundEffects.setEnabled(userPrefs.soundEnabled !== false);
     };
 
     const handlePreferenceChange = (key: string, value: any) => {
         const newPreferences = { ...preferences, [key]: value };
         setPreferences(newPreferences);
         saveUserPreferences(newPreferences);
+        
+        // 同步主题设置
+        if (key === 'theme') {
+            setTheme(value);
+        }
+        
+        // 同步音效设置
+        if (key === 'soundEnabled') {
+            SoundEffects.setEnabled(value);
+        }
     };
 
     const handleExportData = async () => {
@@ -167,6 +184,17 @@ const ProfilePage: React.FC = () => {
                                     onChange={(e) => handlePreferenceChange('autoSave', e.target.checked)}
                                 />
                                 自动保存占卜记录
+                            </label>
+                        </div>
+
+                        <div className="preference-item">
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    checked={preferences.soundEnabled !== false} 
+                                    onChange={(e) => handlePreferenceChange('soundEnabled', e.target.checked)}
+                                />
+                                启用音效
                             </label>
                         </div>
                     </section>

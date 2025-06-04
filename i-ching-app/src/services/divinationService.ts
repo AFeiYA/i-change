@@ -24,12 +24,29 @@ const getHexagramByLines = (lines: number[]): Hexagram => {
     
     // 如果没有精确匹配，返回随机卦象
     const randomIndex = Math.floor(Math.random() * hexagrams.length);
-    return hexagrams[randomIndex];
+    const selectedHexagram = hexagrams[randomIndex];
+    if (!selectedHexagram) {
+        // 应该不会发生，但为了类型安全，返回第一个卦象
+        const firstHexagram = hexagrams[0];
+        if (!firstHexagram) {
+            throw new Error('hexagrams array is empty');
+        }
+        return firstHexagram;
+    }
+    return selectedHexagram;
 };
 
 export const generateHexagram = (): Hexagram => {
     const randomIndex = Math.floor(Math.random() * hexagrams.length);
-    return hexagrams[randomIndex];
+    const selectedHexagram = hexagrams[randomIndex];
+    if (!selectedHexagram) {
+        const firstHexagram = hexagrams[0];
+        if (!firstHexagram) {
+            throw new Error('hexagrams array is empty');
+        }
+        return firstHexagram;
+    }
+    return selectedHexagram;
 };
 
 export const getHexagramById = (id: number): Hexagram | undefined => {

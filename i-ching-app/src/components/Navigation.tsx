@@ -1,7 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Navigation: React.FC = () => {
+  const { theme, setTheme, currentTheme } = useTheme();
+
+  const toggleTheme = () => {
+    const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+    setTheme(nextTheme);
+  };
+
+  const getThemeIcon = () => {
+    return currentTheme === 'light' ? '🌙' : '☀️';
+  };
+
   return (
     <div className="header">
       <h1>易经 I Ching</h1>
@@ -21,6 +33,13 @@ const Navigation: React.FC = () => {
         <Link to="/profile">
           <span>👤 我的</span>
         </Link>
+        <button 
+          className="theme-toggle-btn"
+          onClick={toggleTheme}
+          title={`切换到${currentTheme === 'light' ? '深色' : '浅色'}主题`}
+        >
+          {getThemeIcon()}
+        </button>
       </nav>
     </div>
   );

@@ -16,6 +16,7 @@ export interface UserPreferences {
     theme: 'light' | 'dark' | 'auto';
     language: 'zh-CN' | 'zh-TW' | 'en';
     autoSave: boolean;
+    soundEnabled?: boolean;
 }
 
 export interface UserStats {
@@ -87,7 +88,8 @@ export const getUserPreferences = (): UserPreferences => {
     const defaults: UserPreferences = {
         theme: 'light',
         language: 'zh-CN',
-        autoSave: true
+        autoSave: true,
+        soundEnabled: true
     };
 
     if (!stored) return defaults;

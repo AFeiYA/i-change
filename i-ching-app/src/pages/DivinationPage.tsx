@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import HexagramDisplay from '../components/HexagramDisplay';
+import InteractiveHexagram from '../components/InteractiveHexagram';
+import { useNotification } from '../contexts/NotificationContext';
+import { useSoundEffects } from '../utils/soundEffects';
 import { 
     generateHexagram, 
     performEnhancedCoinDivination, 
@@ -10,6 +13,8 @@ import { saveDivination } from '../services/dataService';
 import { Hexagram } from '../data/hexagrams';
 
 const DivinationPage: React.FC = () => {
+    const { addNotification } = useNotification();
+    const { playClick, playDivinationComplete, playCoinFlip, playYarrowStalks, playChangingLine } = useSoundEffects();
     const [divinationResult, setDivinationResult] = useState<DivinationResult | null>(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [question, setQuestion] = useState<string>('');
@@ -24,9 +29,8 @@ const DivinationPage: React.FC = () => {
             changingLines: result.changingLines,
             secondaryHexagram: result.secondaryHexagram
         });
-    };
-
-    const handleQuickDivination = () => {
+    };    const handleQuickDivination = () => {
+        playClick();
         setIsDrawing(true);
         
         setTimeout(() => {
@@ -37,28 +41,71 @@ const DivinationPage: React.FC = () => {
             };
             setDivinationResult(result);
             saveDivinationResult(result, question);
+            playDivinationComplete();
+            addNotification({
+                type: 'success',
+                title: '占卜完成',
+                message: `获得第${result.hexagram.number}卦 - ${result.hexagram.chineseName}`,
+                duration: 4000
+            });
             setIsDrawing(false);
         }, 1500);
     };
 
     const handleCoinDivination = () => {
+        playClick();
         setIsDrawing(true);
+        
+        // 播放硬币投掷音效
+        playCoinFlip();
         
         setTimeout(() => {
             const result = performEnhancedCoinDivination();
             setDivinationResult(result);
             saveDivinationResult(result, question);
+            
+            // 如果有变爻，播放变爻音效
+            if (result.changingLines.length > 0) {
+                setTimeout(() => playChangingLine(), 500);
+            }
+            
+            playDivinationComplete();
+            addNotification({
+                type: 'success',
+                title: '三币占卜完成',
+                message: `获得第${result.hexagram.number}卦 - ${result.hexagram.chineseName}` + 
+                         (result.changingLines.length > 0 ? `，有${result.changingLines.length}个变爻` : ''),
+                duration: 4000
+            });
             setIsDrawing(false);
         }, 2000);
     };
 
     const handleYarrowDivination = () => {
+        playClick();
         setIsDrawing(true);
+        
+        // 播放蓍草音效
+        playYarrowStalks();
         
         setTimeout(() => {
             const result = performYarrowDivination();
             setDivinationResult(result);
             saveDivinationResult(result, question);
+            
+            // 如果有变爻，播放变爻音效
+            if (result.changingLines.length > 0) {
+                setTimeout(() => playChangingLine(), 500);
+            }
+            
+            playDivinationComplete();
+            addNotification({
+                type: 'success',
+                title: '蓍草占卜完成',
+                message: `获得第${result.hexagram.number}卦 - ${result.hexagram.chineseName}` + 
+                         (result.changingLines.length > 0 ? `，有${result.changingLines.length}个变爻` : ''),
+                duration: 4000
+            });
             setIsDrawing(false);
         }, 3000);
     };
@@ -128,7 +175,11 @@ const DivinationPage: React.FC = () => {
 
                 {divinationResult && !isDrawing && (
                     <div className="divination-result">
-                        <HexagramDisplay hexagram={divinationResult.hexagram} />
+                        <InteractiveHexagram 
+                            hexagram={divinationResult.hexagram} 
+                            changingLines={divinationResult.changingLines}
+                            showLineDetails={true}
+                        />
                         
                         {divinationResult.changingLines && divinationResult.changingLines.length > 0 && (
                             <div className="changing-lines">
@@ -137,7 +188,10 @@ const DivinationPage: React.FC = () => {
                                 {divinationResult.secondaryHexagram && (
                                     <div className="secondary-hexagram">
                                         <h4>变化后的卦象：</h4>
-                                        <HexagramDisplay hexagram={divinationResult.secondaryHexagram} />
+                                        <InteractiveHexagram 
+                                            hexagram={divinationResult.secondaryHexagram}
+                                            showLineDetails={false}
+                                        />
                                     </div>
                                 )}
                             </div>
