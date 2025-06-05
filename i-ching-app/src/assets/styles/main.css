@@ -388,9 +388,22 @@ a:hover {
 .hexagram-content section {
     margin: 30px 0;
     padding: 20px;
-    background: #f8f9fa;
+    background: var(--bg-primary);
     border-radius: 10px;
-    border-left: 4px solid #3498db;
+    border-left: 4px solid var(--accent-blue);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.hexagram-content section h3 {
+    color: var(--text-secondary);
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+}
+
+.hexagram-content section p {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* 个人资料页面样式 */
@@ -495,15 +508,21 @@ a:hover {
 
 .trigram-info {
     margin: 15px 0;
-    padding: 10px;
-    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    padding: 15px;
+    background: var(--bg-primary);
     border-radius: 8px;
-    border-left: 4px solid #f39c12;
+    border-left: 4px solid var(--accent-orange);
     font-size: 0.95em;
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .trigram-info strong {
-    color: #e67e22;
+    color: var(--accent-orange);
+}
+
+.trigram-info p {
+    color: var(--text-primary);
+    margin: 0;
 }
 
 /* 卦象网格中的Unicode显示 */
@@ -511,9 +530,10 @@ a:hover {
     font-size: 2.5em;
     margin: 10px 0;
     padding: 5px;
-    background: linear-gradient(135deg, #ffffff, #f8f9fa);
-    border: 1px solid #dee2e6;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
+    color: var(--text-secondary);
 }
 
 /* 历史页面样式 */
@@ -1360,560 +1380,63 @@ a:hover {
     }
 }
 
-/* 六爻解析演示页面样式 */
-.line-analysis-demo {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.line-analysis-demo h1 {
-    text-align: center;
-    color: var(--text-secondary);
-    margin-bottom: 30px;
-    font-size: 2.5em;
-}
-
-.demo-description {
-    background: var(--bg-primary);
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-blue);
-    margin-bottom: 30px;
+/* 卦象详情页面的交互式卦象样式 */
+.interactive-hexagram-section {
+    margin: 30px 0;
     text-align: center;
 }
 
-.demo-description p {
-    margin: 0;
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: var(--text-primary);
-}
-
-.hexagram-selector {
-    background: var(--bg-secondary);
-    padding: 20px;
+.interaction-hint {
+    background: linear-gradient(135deg, #e8f4fd, #f0f8ff);
+    border: 1px solid var(--accent-blue);
     border-radius: 8px;
-    box-shadow: 0 2px 10px var(--shadow);
-    margin-bottom: 30px;
-}
-
-.hexagram-selector h3 {
-    margin: 0 0 15px 0;
-    color: var(--text-secondary);
-}
-
-.hexagram-select {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid var(--border-color);
-    border-radius: 6px;
-    background: var(--bg-primary);
+    padding: 15px 20px;
+    margin-bottom: 25px;
     color: var(--text-primary);
-    font-size: 1em;
-    transition: all 0.3s ease;
+    font-size: 0.95em;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
 }
 
-.hexagram-select:focus {
-    outline: none;
+[data-theme="dark"] .interaction-hint {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.05));
     border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
-.demo-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 30px;
-    margin-bottom: 30px;
+.hexagram-detail .interactive-hexagram {
+    margin: 20px auto;
+    max-width: 600px;
 }
 
-.hexagram-display {
-    background: var(--bg-secondary);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--shadow);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
+.hexagram-detail .hexagram-container {
+    justify-content: space-around;
+    padding: 20px;
 }
 
-.hexagram-info {
-    background: var(--bg-secondary);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--shadow);
+.hexagram-detail .hexagram-info {
+    min-width: 200px;
 }
 
-.hexagram-info h3 {
-    margin: 0 0 20px 0;
-    color: var(--text-secondary);
-    font-size: 1.4em;
-    border-bottom: 2px solid var(--accent-blue);
-    padding-bottom: 10px;
+.hexagram-detail .hexagram-lines {
+    flex: 1;
+    max-width: 200px;
 }
 
-.hexagram-info p {
-    margin: 0 0 15px 0;
-    line-height: 1.6;
-    color: var(--text-primary);
-}
-
-.hexagram-info strong {
-    color: var(--text-secondary);
-}
-
-.usage-instructions {
-    background: var(--bg-secondary);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--shadow);
-    border-left: 4px solid var(--accent-green);
-}
-
-.usage-instructions h3 {
-    margin: 0 0 15px 0;
-    color: var(--text-secondary);
-}
-
-.usage-instructions ul {
-    margin: 0;
-    padding-left: 20px;
-}
-
-.usage-instructions li {
-    margin-bottom: 8px;
-    line-height: 1.5;
-    color: var(--text-primary);
-}
-
-/* 响应式设计 */
+/* 响应式调整 */
 @media (max-width: 768px) {
-    .interactive-hexagram {
-        padding: 20px;
-        margin: 15px 0;
+    .interaction-hint {
+        padding: 12px 15px;
+        font-size: 0.9em;
     }
     
-    .hexagram-lines-container {
+    .hexagram-detail .hexagram-container {
         flex-direction: column;
-        gap: 20px;
-    }
-    
-    .trigram-composition {
         gap: 20px;
         padding: 15px;
     }
     
-    .line-interactive {
-        min-width: 150px;
-    }
-    
-    .line-symbol {
-        font-size: 20px;
-        letter-spacing: 6px;
-        min-width: 60px;
-    }
-    
-    .modal-content {
-        width: 95%;
-        margin: 10px;
-    }
-    
-    .modal-header, .modal-body {
-        padding: 20px;
-    }
-
-    .notification-container {
-        top: 10px;
-        right: 10px;
-        left: 10px;
+    .hexagram-detail .hexagram-info,
+    .hexagram-detail .hexagram-lines {
+        width: 100%;
         max-width: none;
     }
-    
-    .notification {
-        min-width: auto;
-        width: 100%;
-    }
-
-    .line-detail-modal {
-        width: 95%;
-        max-height: 90vh;
-    }
-    
-    .modal-header {
-        padding: 15px 20px;
-    }
-    
-    .modal-content {
-        padding: 20px;
-    }
-    
-    .line-visual {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .large-line {
-        width: 100px;
-    }
-    
-    .demo-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .hexagram-display {
-        min-height: 200px;
-        padding: 20px;
-    }
-    
-    .line-analysis-demo h1 {
-        font-size: 2em;
-    }
-}
-
-/* 响应式设计 - 新布局 */
-@media (max-width: 768px) {
-    .hexagram-container {
-        flex-direction: column;
-        gap: 25px;
-    }
-    
-    .hexagram-info {
-        min-width: auto;
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .hexagram-lines {
-        width: 100%;
-        align-items: center;
-    }
-    
-    .hexagram-line {
-        width: 140px;
-        height: 18px;
-        padding: 10px 15px;
-    }
-    
-    .line-solid {
-        width: 90px;
-        height: 10px;
-    }
-    
-    .line-broken {
-        width: 90px;
-        height: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .interactive-hexagram {
-        padding: 15px;
-        margin: 10px 0;
-    }
-    
-    .hexagram-container {
-        gap: 20px;
-    }
-    
-    .hexagram-info {
-        padding: 15px;
-    }
-    
-    .hexagram-name {
-        font-size: 1.3em;
-    }
-    
-    .hexagram-unicode {
-        font-size: 2em;
-    }
-    
-    .hexagram-line {
-        width: 120px;
-        height: 16px;
-        padding: 8px 12px;
-    }
-    
-    .line-solid {
-        width: 70px;
-        height: 8px;
-    }
-    
-    .line-broken {
-        width: 70px;
-        height: 8px;
-        gap: 8px;
-    }
-}
-
-/* Profile Page Specific Styles */
-.preferences-section, .data-section {
-    background: var(--bg-secondary);
-    padding: 25px;
-    border-radius: 15px;
-    margin: 20px 0;
-    box-shadow: 0 4px 15px var(--shadow);
-    border: 1px solid var(--border-color);
-}
-
-.preferences-section h2, .data-section h2 {
-    color: var(--text-secondary);
-    border-bottom: 2px solid var(--accent-blue);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.preference-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 15px 0;
-    padding: 10px 0;
-}
-
-.preference-item label {
-    font-weight: 500;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.preference-select {
-    padding: 8px 15px;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    font-size: 1em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.preference-select:focus {
-    outline: none;
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-}
-
-.preference-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--accent-blue);
-}
-
-.data-actions {
-    display: flex;
-    gap: 15px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-
-.export-btn, .import-btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1em;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.export-btn {
-    background: linear-gradient(135deg, var(--accent-green), #1e8449);
-    color: white;
-}
-
-.export-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
-}
-
-.export-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.import-btn {
-    background: linear-gradient(135deg, var(--accent-blue), #1e5f8b);
-    color: white;
-}
-
-.import-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-}
-
-.data-info {
-    font-size: 0.9em;
-    color: var(--text-primary);
-    background: var(--bg-primary);
-    padding: 15px;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-orange);
-    margin-top: 15px;
-}
-
-/* Dark theme specific enhancements for history page */
-[data-theme="dark"] .history-item.selected {
-    background: rgba(99, 179, 237, 0.15);
-    box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.3);
-}
-
-[data-theme="dark"] .delete-btn:hover {
-    background: rgba(231, 76, 60, 0.2);
-}
-
-[data-theme="dark"] .detail-info {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-}
-
-[data-theme="dark"] .changing-lines-detail {
-    background: rgba(237, 137, 54, 0.1);
-    border: 2px solid var(--accent-orange);
-}
-
-/* Enhanced dark mode styles for better contrast and accessibility */
-[data-theme="dark"] .nav a {
-    color: #e2e8f0;
-}
-
-[data-theme="dark"] .nav a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-}
-
-[data-theme="dark"] .theme-toggle-btn {
-    border-color: #e2e8f0;
-    color: #e2e8f0;
-}
-
-[data-theme="dark"] .theme-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .question-input textarea {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    border-color: var(--border-color);
-}
-
-[data-theme="dark"] .question-input textarea:focus {
-    box-shadow: 0 0 5px rgba(96, 165, 250, 0.5);
-}
-
-[data-theme="dark"] .divination-btn {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme="dark"] .divination-btn:hover:not(:disabled) {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-}
-
-[data-theme="dark"] .method-desc {
-    background: var(--card-bg);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-}
-
-[data-theme="dark"] .hexagram-card .detail {
-    background: var(--card-bg);
-    border-color: var(--border-color);
-}
-
-[data-theme="dark"] .hexagram-content section {
-    background: var(--card-bg);
-    border-left-color: var(--accent-blue);
-}
-
-[data-theme="dark"] .app-info {
-    background: var(--card-bg);
-    color: var(--text-primary);
-}
-
-[data-theme="dark"] .unicode-symbol {
-    background: var(--card-bg);
-    border-color: var(--border-color);
-    color: var(--text-primary);
-}
-
-[data-theme="dark"] .trigram-info {
-    background: rgba(221, 107, 32, 0.15);
-    border-left-color: var(--accent-orange);
-    color: var(--text-primary);
-}
-
-[data-theme="dark"] .trigram-composition {
-    background: var(--card-bg);
-    border-color: var(--border-color);
-}
-
-[data-theme="dark"] .trigram-name {
-    background: var(--bg-primary);
-    color: var(--accent-purple);
-    border-color: var(--accent-purple);
-}
-
-[data-theme="dark"] .line-click-hint {
-    background: var(--card-bg);
-    border-color: var(--border-color);
-    border-left-color: var(--accent-blue);
-}
-
-[data-theme="dark"] .demo-description {
-    background: var(--card-bg);
-    border-left-color: var(--accent-blue);
-}
-
-[data-theme="dark"] .usage-instructions {
-    background: var(--card-bg);
-    border-left-color: var(--accent-green);
-}
-
-[data-theme="dark"] .loading-spinner {
-    border-color: var(--border-color);
-    border-top-color: var(--accent-blue);
-}
-
-/* Ensure proper text contrast in dark mode */
-[data-theme="dark"] h1, 
-[data-theme="dark"] h2, 
-[data-theme="dark"] h3, 
-[data-theme="dark"] h4, 
-[data-theme="dark"] h5, 
-[data-theme="dark"] h6 {
-    color: var(--text-secondary);
-}
-
-[data-theme="dark"] p,
-[data-theme="dark"] span,
-[data-theme="dark"] div {
-    color: var(--text-primary);
-}
-
-/* Enhanced accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-        animation: none !important;
-    }
-}
-
-/* Focus styles for better accessibility */
-*:focus {
-    outline: 2px solid var(--accent-blue);
-    outline-offset: 2px;
-}
-
-button:focus,
-select:focus,
-input:focus,
-textarea:focus {
-    outline: 2px solid var(--accent-blue);
-    outline-offset: 2px;
 }

@@ -23,9 +23,6 @@ const Navigation: React.FC = () => {
         </Link>        <Link to="/classics">
           <span>📚 经典</span>
         </Link>
-        <Link to="/line-analysis-demo">
-          <span>🔍 爻线解析</span>
-        </Link>
         <Link to="/history">
           <span>📜 历史</span>
         </Link>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { hexagrams } from '../data/hexagrams';
 import { getHexagramById } from '../services/divinationService';
+import InteractiveHexagram from '../components/InteractiveHexagram';
 
 const HexagramDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -29,17 +30,16 @@ const HexagramDetailPage: React.FC = () => {
                         <h1>第{hexagram.number}卦 - {hexagram.chineseName}</h1>
                         <h2>{hexagram.name}</h2>
                         
-                        {/* Unicode字符表示 */}
-                        <div className="hexagram-unicode">
-                            <span className="unicode-symbol">{hexagram.unicode}</span>
-                        </div>
-                        
-                        <div className="hexagram-lines-large">
-                            {hexagram.lines.map((line, index) => (
-                                <div key={index} className="line-large">
-                                    {line}
-                                </div>
-                            )).reverse()}
+                        {/* 交互式卦象显示 - 可点击爻线查看详细解析 */}
+                        <div className="interactive-hexagram-section">
+                            <div className="interaction-hint">
+                                💡 <strong>提示：</strong>点击任意爻线可查看该爻的详细含义和解析
+                            </div>
+                            <InteractiveHexagram
+                                hexagram={hexagram}
+                                enableLineClick={true}
+                                showChangingLines={false}
+                            />
                         </div>
                         
                         <div className="trigram-info">

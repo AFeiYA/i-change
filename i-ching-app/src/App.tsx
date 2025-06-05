@@ -10,7 +10,6 @@ import HexagramDetailPage from './pages/HexagramDetailPage';
 import HistoryPage from './pages/HistoryPage';
 import ProfilePage from './pages/ProfilePage';
 import AboutPage from './pages/AboutPage';
-import LineAnalysisDemo from './pages/LineAnalysisDemo';
 
 const App: React.FC = () => {
   return (
@@ -26,7 +25,6 @@ const App: React.FC = () => {
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/line-analysis-demo" element={<LineAnalysisDemo />} />
             </Routes>
             <Footer />
           </div>        </Router>
