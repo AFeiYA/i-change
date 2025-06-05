@@ -81,16 +81,17 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
     };    return (
         <div className="interactive-hexagram">
             <div className="hexagram-container">
+                <div className="hexagram-info">
+                    <div className="hexagram-number">第{hexagram.number}卦</div>
+                    <div className="hexagram-name">{hexagram.chineseName || hexagram.name}</div>
+                    <div className="hexagram-unicode">{hexagram.unicode}</div>
+                    <div className="hexagram-english-name">{hexagram.name}</div>
+                </div>
                 <div className="hexagram-lines">
                     {/* 从上到下渲染爻线（第6爻到第1爻） */}
                     {hexagram.lines.slice().reverse().map((line, index) => 
                         renderLine(line, 5 - index)
                     )}
-                </div>
-                <div className="hexagram-info">
-                    <div className="hexagram-number">第{hexagram.number}卦</div>
-                    <div className="hexagram-name">{hexagram.name}</div>
-                    <div className="hexagram-unicode">{hexagram.unicode}</div>
                 </div>
             </div>
             
