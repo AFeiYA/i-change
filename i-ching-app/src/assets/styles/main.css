@@ -19,7 +19,7 @@ a {
 
 a:hover {
     text-decoration: underline;
-    color: #1e5f8b;
+    color: var(--accent-blue);
 }
 
 .container {
@@ -32,14 +32,14 @@ a:hover {
 
 .header {
     background: var(--bg-gradient);
-    color: #fff;
+    color: white;
     padding: 20px 0;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px var(--shadow);
 }
 
 .header h1 {
-    color: #fff;
+    color: white;
     margin: 0;
     font-size: 2.5em;
     font-weight: bold;
@@ -51,11 +51,11 @@ a:hover {
     align-items: center;
     background: var(--bg-secondary);
     padding: 15px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px var(--shadow);
 }
 
 .nav a {
-    color: #ecf0f1;
+    color: var(--text-primary);
     padding: 10px 20px;
     border-radius: 25px;
     transition: all 0.3s ease;
@@ -63,15 +63,15 @@ a:hover {
 }
 
 .nav a:hover {
-    background: #2c3e50;
+    background: rgba(0, 127, 127, .5);
+    color: white;
     text-decoration: none;
-    transform: translateY(-2px);
 }
 
 .theme-toggle-btn {
     background: none;
-    border: 2px solid #ecf0f1;
-    color: #ecf0f1;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
     padding: 8px 15px;
     border-radius: 50%;
     cursor: pointer;
@@ -85,9 +85,9 @@ a:hover {
 }
 
 .theme-toggle-btn:hover {
-    background: #2c3e50;
+    background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px) rotate(20deg);
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 4px 15px var(--shadow);
 }
 
 /* 占卜页面样式 */
@@ -105,7 +105,7 @@ a:hover {
 }
 
 .divination-btn {
-    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    background: var(--accent-green);
     color: white;
     border: none;
     padding: 15px 30px;
@@ -131,7 +131,7 @@ a:hover {
 .drawing-animation {
     margin: 30px 0;
     font-size: 1.3em;
-    color: #e67e22;
+    color: var(--accent-orange);
     animation: pulse 1.5s infinite;
 }
 
@@ -154,28 +154,30 @@ a:hover {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--text-secondary);
 }
 
 .question-input textarea {
     width: 100%;
     padding: 12px;
-    border: 2px solid #bdc3c7;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     font-size: 1em;
     font-family: inherit;
     resize: vertical;
     transition: border-color 0.3s ease;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
 }
 
 .question-input textarea:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: var(--accent-blue);
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
 .question-input textarea:disabled {
-    background-color: #ecf0f1;
+    background-color: var(--card-hover);
     cursor: not-allowed;
 }
 
@@ -283,25 +285,25 @@ a:hover {
     font-size: 24px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--text-secondary);
     letter-spacing: 8px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px var(--shadow);
 }
 
 .line-large {
     font-size: 32px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--text-secondary);
     letter-spacing: 12px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px var(--shadow);
 }
 
 .line-small {
     font-size: 14px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--text-secondary);
     letter-spacing: 4px;
 }
 
@@ -312,8 +314,8 @@ a:hover {
 }
 
 .hexagram-info h3 {
-    color: #e67e22;
-    border-bottom: 2px solid #f39c12;
+    color: var(--accent-orange);
+    border-bottom: 2px solid var(--accent-orange);
     padding-bottom: 5px;
     margin-top: 25px;
 }
@@ -524,7 +526,8 @@ a:hover {
 .empty-history {
     text-align: center;
     padding: 60px 20px;
-    color: #7f8c8d;
+    color: var(--text-primary);
+    opacity: 0.7;
 }
 
 .empty-history p {
@@ -533,7 +536,7 @@ a:hover {
 }
 
 .empty-history a {
-    color: #3498db;
+    color: var(--accent-blue);
     font-weight: bold;
     text-decoration: none;
 }
@@ -543,11 +546,11 @@ a:hover {
 }
 
 .history-controls {
-    background: white;
+    background: var(--bg-secondary);
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px var(--shadow);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -563,17 +566,18 @@ a:hover {
 
 .control-select {
     padding: 8px 12px;
-    border: 2px solid #bdc3c7;
+    border: 2px solid var(--border-color);
     border-radius: 5px;
     font-size: 1em;
-    background: white;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
     cursor: pointer;
     transition: border-color 0.3s ease;
 }
 
 .control-select:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: var(--accent-blue);
 }
 
 .clear-btn {
@@ -599,39 +603,46 @@ a:hover {
 }
 
 .history-list {
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px var(--shadow);
     max-height: 70vh;
     overflow-y: auto;
 }
 
 .history-list h3 {
     margin-top: 0;
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--accent-blue);
     padding-bottom: 10px;
 }
 
 .history-item {
-    border: 2px solid #ecf0f1;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
+    background: var(--bg-secondary);
 }
 
 .history-item:hover {
-    border-color: #3498db;
+    border-color: var(--accent-blue);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px var(--shadow);
 }
 
 .history-item.selected {
-    border-color: #3498db;
-    background: #ebf3fd;
+    border-color: var(--accent-blue);
+    background: var(--bg-primary);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+[data-theme="dark"] .history-item.selected {
+    background: rgba(99, 179, 237, 0.15);
+    box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.3);
 }
 
 .history-item-header {
@@ -648,7 +659,7 @@ a:hover {
 
 .hexagram-name {
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--text-secondary);
     flex-grow: 1;
 }
 
@@ -662,7 +673,11 @@ a:hover {
 }
 
 .delete-btn:hover {
-    background: #ffebee;
+    background: rgba(231, 76, 60, 0.2);
+}
+
+[data-theme="dark"] .delete-btn:hover {
+    background: rgba(231, 76, 60, 0.2);
 }
 
 .history-item-info {
@@ -671,18 +686,20 @@ a:hover {
     align-items: center;
     margin-bottom: 10px;
     font-size: 0.9em;
-    color: #7f8c8d;
+    color: var(--text-primary);
+    opacity: 0.7;
 }
 
 .changing-lines-info {
     font-size: 0.8em;
-    color: #e67e22;
+    color: var(--accent-orange);
     font-weight: bold;
 }
 
 .question-preview {
     font-style: italic;
-    color: #555;
+    color: var(--text-primary);
+    opacity: 0.8;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -690,50 +707,52 @@ a:hover {
 }
 
 .history-detail {
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px var(--shadow);
     max-height: 70vh;
     overflow-y: auto;
 }
 
 .divination-detail h3 {
     margin-top: 0;
-    color: #2c3e50;
-    border-bottom: 2px solid #27ae60;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--accent-green);
     padding-bottom: 10px;
 }
 
 .detail-info {
-    background: #f8f9fa;
+    background: var(--bg-primary);
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
+    border: 1px solid var(--border-color);
 }
 
 .detail-info p {
     margin: 8px 0;
+    color: var(--text-primary);
 }
 
 .changing-lines-detail {
-    background: #fff3cd;
-    border: 2px solid #ffeaa7;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent-orange);
     border-radius: 10px;
     padding: 20px;
     margin: 20px 0;
-    color: #856404;
+    color: var(--text-primary);
 }
 
 .changing-lines-detail h4 {
     margin-top: 0;
-    color: #856404;
+    color: var(--accent-orange);
 }
 
 .secondary-hexagram {
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px solid #ffeaa7;
+    border-top: 1px solid var(--border-color);
 }
 
 .no-selection {
@@ -741,44 +760,61 @@ a:hover {
     align-items: center;
     justify-content: center;
     height: 200px;
-    color: #7f8c8d;
+    color: var(--text-primary);
+    opacity: 0.6;
     font-style: italic;
 }
 
 /* Dark theme support */
 :root {
-    /* Light theme variables */
-    --bg-primary: #f5f5f5;
+    /* Light theme variables - Enhanced design */
+    --bg-primary: #f8fafc;
     --bg-secondary: #ffffff;
     --bg-gradient: linear-gradient(135deg, #2980b9, #3498db);
-    --text-primary: #333;
-    --text-secondary: #2c3e50;
-    --border-color: #bdc3c7;
+    --text-primary: #1a202c;
+    --text-secondary: #2d3748;
+    --border-color: #e2e8f0;
     --shadow: rgba(0,0,0,0.1);
-    --accent-blue: #3498db;
-    --accent-green: #27ae60;
-    --accent-orange: #f39c12;
-    --accent-purple: #8e44ad;
+    --accent-blue: #3182ce;
+    --accent-green: #38a169;
+    --accent-orange: #dd6b20;
+    --accent-purple: #805ad5;
+    
+    /* Additional light theme variables */
+    --card-bg: #ffffff;
+    --card-hover: #f7fafc;
+    --text-muted: #718096;
+    --success-bg: #f0fff4;
+    --warning-bg: #fffbeb;
+    --error-bg: #fed7d7;
 }
 
 [data-theme="dark"] {
-    /* Dark theme variables */
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d3748;
+    /* Dark theme variables - Enhanced contrast */
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1e2732;
     --bg-gradient: linear-gradient(135deg, #1a365d, #2c5282);
-    --text-primary: #e2e8f0;
-    --text-secondary: #cbd5e0;
+    --text-primary: #f7fafc;
+    --text-secondary: #e2e8f0;
     --border-color: #4a5568;
-    --shadow: rgba(0,0,0,0.3);
-    --accent-blue: #63b3ed;
-    --accent-green: #48bb78;
-    --accent-orange: #ed8936;
-    --accent-purple: #9f7aea;
+    --shadow: rgba(0,0,0,0.5);
+    --accent-blue: #60a5fa;
+    --accent-green: #34d399;
+    --accent-orange: #fbbf24;
+    --accent-purple: #a78bfa;
+    
+    /* Additional dark theme variables */
+    --card-bg: #1a202c;
+    --card-hover: #2d3748;
+    --text-muted: #a0aec0;
+    --success-bg: #065f46;
+    --warning-bg: #92400e;
+    --error-bg: #991b1b;
 }
 
 /* Smooth theme transition */
 * {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3
 }
 
 /* Enhanced animations */
@@ -1546,4 +1582,162 @@ a:hover {
     margin-top: 15px;
 }
 
-/* Enhanced animations */
+/* Dark theme specific enhancements for history page */
+[data-theme="dark"] .history-item.selected {
+    background: rgba(99, 179, 237, 0.15);
+    box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.3);
+}
+
+[data-theme="dark"] .delete-btn:hover {
+    background: rgba(231, 76, 60, 0.2);
+}
+
+[data-theme="dark"] .detail-info {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .changing-lines-detail {
+    background: rgba(237, 137, 54, 0.1);
+    border: 2px solid var(--accent-orange);
+}
+
+/* Enhanced dark mode styles for better contrast and accessibility */
+[data-theme="dark"] .nav a {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+    border-color: #e2e8f0;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .question-input textarea {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .question-input textarea:focus {
+    box-shadow: 0 0 5px rgba(96, 165, 250, 0.5);
+}
+
+[data-theme="dark"] .divination-btn {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .divination-btn:hover:not(:disabled) {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .method-desc {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .hexagram-card .detail {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .hexagram-content section {
+    background: var(--card-bg);
+    border-left-color: var(--accent-blue);
+}
+
+[data-theme="dark"] .app-info {
+    background: var(--card-bg);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .unicode-symbol {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .trigram-info {
+    background: rgba(221, 107, 32, 0.15);
+    border-left-color: var(--accent-orange);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .trigram-composition {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .trigram-name {
+    background: var(--bg-primary);
+    color: var(--accent-purple);
+    border-color: var(--accent-purple);
+}
+
+[data-theme="dark"] .line-click-hint {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    border-left-color: var(--accent-blue);
+}
+
+[data-theme="dark"] .demo-description {
+    background: var(--card-bg);
+    border-left-color: var(--accent-blue);
+}
+
+[data-theme="dark"] .usage-instructions {
+    background: var(--card-bg);
+    border-left-color: var(--accent-green);
+}
+
+[data-theme="dark"] .loading-spinner {
+    border-color: var(--border-color);
+    border-top-color: var(--accent-blue);
+}
+
+/* Ensure proper text contrast in dark mode */
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] div {
+    color: var(--text-primary);
+}
+
+/* Enhanced accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Focus styles for better accessibility */
+*:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+button:focus,
+select:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
