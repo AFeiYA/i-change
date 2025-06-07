@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import DivinationPage from './pages/DivinationPage';
 import ClassicsPage from './pages/ClassicsPage';
 import HexagramDetailPage from './pages/HexagramDetailPage';
+import NetworkPage from './pages/NetworkPage';
 import HistoryPage from './pages/HistoryPage';
 import ProfilePage from './pages/ProfilePage';
 import AboutPage from './pages/AboutPage';
@@ -22,6 +23,7 @@ const App: React.FC = () => {
               <Route path="/divination" element={<DivinationPage />} />
               <Route path="/classics" element={<ClassicsPage />} />
               <Route path="/hexagram/:id" element={<HexagramDetailPage />} />
+              <Route path="/network" element={<NetworkPage />} />
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/about" element={<AboutPage />} />

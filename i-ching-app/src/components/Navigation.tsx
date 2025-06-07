@@ -16,12 +16,13 @@ const Navigation: React.FC = () => {
 
   return (
     <div className="header">
-      <h1>易经 I Ching</h1>
-      <nav className="nav">
+      <h1>易经 I Ching</h1>      <nav className="nav">
         <Link to="/">
           <span>🎋 占卜</span>
         </Link>        <Link to="/classics">
           <span>📚 经典</span>
+        </Link>        <Link to="/network">
+          <span>🕸️ 关系网络</span>
         </Link>
         <Link to="/history">
           <span>📜 历史</span>

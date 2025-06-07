@@ -1421,22 +1421,310 @@ a:hover {
     max-width: 200px;
 }
 
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .interaction-hint {
-        padding: 12px 15px;
-        font-size: 0.9em;
+/* 卦象关系网络图样式 */
+.network-page {
+    min-height: 100vh;
+    background: var(--bg-primary);
+}
+
+.network-page .container {
+    max-width: 100%;
+    padding: 20px;
+}
+
+.network-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.network-header h1 {
+    color: var(--accent-blue);
+    margin-bottom: 10px;
+    font-size: 2.2em;
+}
+
+.network-header p {
+    color: var(--text-secondary);
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.hexagram-network {
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px var(--shadow);
+    display: flex;
+    gap: 20px;
+    min-height: 600px;
+}
+
+.network-container {
+    flex: 1;
+    position: relative;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.network-svg {
+    display: block;
+    cursor: grab;
+}
+
+.network-svg:active {
+    cursor: grabbing;
+}
+
+/* 网络图元素样式 */
+.network-link {
+    cursor: pointer;
+    transition: stroke-opacity 0.3s ease;
+}
+
+.network-link:hover {
+    stroke-opacity: 1 !important;
+    stroke-width: 3px !important;
+}
+
+.network-node {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+}
+
+.network-node:hover {
+    filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.4));
+}
+
+.network-node-text {
+    font-family: var(--font-special), serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+
+.network-node-label {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    pointer-events: none;
+}
+
+[data-theme="dark"] .network-node-label {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* 控制面板样式 */
+.network-controls {
+    width: 300px;
+    padding: 20px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    height: fit-content;
+}
+
+.network-controls h3 {
+    color: var(--accent-blue);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.filter-btn {
+    padding: 10px 15px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+}
+
+.filter-btn:hover {
+    background: var(--accent-blue);
+    color: white;
+    transform: translateX(3px);
+}
+
+.filter-btn.active {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+}
+
+.network-stats {
+    padding: 15px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.network-stats h4 {
+    color: var(--accent-blue);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.network-stats p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* 选中节点信息样式 */
+.selected-node-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 2px solid var(--accent-blue);
+    min-width: 200px;
+    z-index: 10;
+}
+
+[data-theme="dark"] .selected-node-info {
+    background: rgba(42, 42, 42, 0.95);
+    color: var(--text-primary);
+}
+
+.selected-node-info h4 {
+    margin: 0 0 8px 0;
+    color: var(--accent-blue);
+    font-size: 1.1em;
+}
+
+.selected-node-info p {
+    margin: 4px 0;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* 工具提示样式 */
+.network-tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 8px;
+    pointer-events: none;
+    font-size: 0.9em;
+    line-height: 1.4;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.network-tooltip strong {
+    font-size: 1.1em;
+    color: var(--accent-blue);
+}
+
+/* 加载状态样式 */
+.network-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    font-size: 1.1em;
+    color: var(--text-secondary);
+}
+
+.network-loading::before {
+    content: "⏳";
+    margin-right: 10px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 聚焦控制样式 */
+.focus-controls {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+}
+
+.focus-controls h3 {
+    color: var(--accent-blue);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.focused-node-info {
+    text-align: center;
+    padding: 10px;
+    background: rgba(231, 76, 60, 0.1);
+    border-radius: 8px;
+    border: 1px solid #e74c3c;
+}
+
+.focused-node-info p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.focused-node-info p:first-child {
+    font-weight: bold;
+    color: var(--accent-blue);
+}
+
+.focus-hint {
+    padding: 10px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+    text-align: center;
+}
+
+/* 聚焦模式下的节点样式增强 */
+.network-node.focused {
+    filter: drop-shadow(0 0 10px #e74c3c);
+    animation: focusedPulse 2s ease-in-out infinite;
+}
+
+@keyframes focusedPulse {
+    0%, 100% { 
+        filter: drop-shadow(0 0 10px #e74c3c);
     }
-    
-    .hexagram-detail .hexagram-container {
-        flex-direction: column;
-        gap: 20px;
-        padding: 15px;
+    50% { 
+        filter: drop-shadow(0 0 20px #e74c3c);
     }
-    
-    .hexagram-detail .hexagram-info,
-    .hexagram-detail .hexagram-lines {
-        width: 100%;
-        max-width: none;
-    }
+}
+
+/* 非聚焦节点在聚焦模式下的样式 */
+.network-node.dimmed {
+    opacity: 0.3;
+    filter: grayscale(50%);
+}
+
+.network-link.dimmed {
+    opacity: 0.2;
 }
