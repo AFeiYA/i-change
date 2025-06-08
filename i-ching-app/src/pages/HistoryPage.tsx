@@ -66,127 +66,234 @@ const HistoryPage: React.FC = () => {
             hour: '2-digit',
             minute: '2-digit'
         });
-    };
-
-    return (
-        <div className="container">
-            <div className="history-page">
-                <h1>📜 占卜历史</h1>
-                
-                {history.length === 0 ? (
-                    <div className="empty-history">
-                        <p>还没有任何占卜记录</p>
-                        <p>去<a href="/divination">占卜页面</a>开始您的第一次占卜吧！</p>
+    };    return (
+        <div className="history-page">
+            <div className="background-decoration">
+                <div className="floating-symbols">
+                    <span>☯</span>
+                    <span>⚊</span>
+                    <span>⚋</span>
+                    <span>📜</span>
+                    <span>🔮</span>
+                </div>
+            </div>            <div className="page-header">
+                <div className="header-content">
+                    <div className="title-section">
+                        <h1>📜 占卜历史</h1>
+                        <p className="subtitle">回顾您的占卜足迹，领悟智慧之路</p>
                     </div>
-                ) : (
-                    <>
-                        <div className="history-controls">
-                            <div className="filter-sort">                                <select 
-                                    value={sortBy} 
-                                    onChange={(e) => {
-                                        const value = e.target.value;
-                                        setSortBy(value === 'method' ? 'method' : 'date');
-                                    }}
-                                    className="control-select"
-                                >
-                                    <option value="date">按日期排序</option>
-                                    <option value="method">按方法排序</option>
-                                </select>
-                                
-                                <select 
-                                    value={filterMethod} 
-                                    onChange={(e) => setFilterMethod(e.target.value)}
-                                    className="control-select"
-                                >
-                                    <option value="all">所有方法</option>
-                                    <option value="random">快速占卜</option>
-                                    <option value="coin">三币占卜</option>
-                                    <option value="yarrow">蓍草占卜</option>
-                                </select>
+                </div>
+            </div>
+                
+            {history.length === 0 ? (
+                <div className="empty-state">
+                    <div className="empty-content">
+                        <div className="empty-icon">📚</div>
+                        <h3>暂无占卜记录</h3>
+                        <p>您还没有进行过占卜，快去开始您的第一次占卜之旅吧！</p>
+                        <a href="/divination" className="cta-button">
+                            🔮 开始占卜
+                        </a>
+                    </div>
+                </div>
+            ) : (                <>
+                    <div className="history-layout">
+                        <div className="history-list">
+                            <div className="list-header">
+                                <h3>历史记录</h3>
+                                <span className="record-count">{filteredHistory.length} 条记录</span>
                             </div>
-                            
-                            <button 
-                                onClick={handleClearHistory}
-                                className="clear-btn"
-                            >
-                                🗑️ 清空历史
-                            </button>
-                        </div>
-
-                        <div className="history-layout">
-                            <div className="history-list">
-                                <h3>历史记录 ({filteredHistory.length})</h3>
+                            <div className="history-items">
                                 {sortedHistory.map((divination) => (
                                     <div 
                                         key={divination.id}
                                         className={`history-item ${selectedDivination?.id === divination.id ? 'selected' : ''}`}
                                         onClick={() => setSelectedDivination(divination)}
                                     >
-                                        <div className="history-item-header">
-                                            <span className="hexagram-unicode">{divination.hexagram.unicode}</span>
-                                            <span className="hexagram-name">{divination.hexagram.name}</span>
+                                        <div className="item-main">
+                                            <div className="hexagram-info">
+                                                <span className="hexagram-unicode">{divination.hexagram.unicode}</span>
+                                                <div className="hexagram-details">
+                                                    <span className="hexagram-name">{divination.hexagram.name}</span>
+                                                    <span className="hexagram-number">第{divination.hexagram.number}卦</span>
+                                                </div>
+                                            </div>
                                             <button 
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     handleDeleteDivination(divination.id);
                                                 }}
-                                                className="delete-btn"
-                                                title="删除"
+                                                className="delete-button"
+                                                title="删除这条记录"
                                             >
-                                                ❌
+                                                🗑️
                                             </button>
                                         </div>
-                                        <div className="history-item-info">
-                                            <div className="date">{formatDate(divination.date)}</div>
-                                            <div className="method">{getMethodName(divination.method)}</div>
+                                        
+                                        <div className="item-meta">
+                                            <div className="meta-item">
+                                                <span className="meta-icon">📅</span>
+                                                <span className="meta-text">{formatDate(divination.date)}</span>
+                                            </div>
+                                            <div className="meta-item">
+                                                <span className="meta-icon">🔮</span>
+                                                <span className="meta-text">{getMethodName(divination.method)}</span>
+                                            </div>
                                             {divination.changingLines && divination.changingLines.length > 0 && (
-                                                <div className="changing-lines-info">
-                                                    变爻: {divination.changingLines.join(', ')}
+                                                <div className="meta-item changing-lines">
+                                                    <span className="meta-icon">🔄</span>
+                                                    <span className="meta-text">变爻: {divination.changingLines.join(', ')}</span>
                                                 </div>
                                             )}
                                         </div>
+                                        
                                         <div className="question-preview">
-                                            {divination.question}
+                                            <span className="question-icon">❓</span>
+                                            <span className="question-text">{divination.question}</span>
                                         </div>
                                     </div>
                                 ))}
                             </div>
+                        </div>
 
-                            <div className="history-detail">
-                                {selectedDivination ? (
-                                    <div className="divination-detail">
+                        <div className="history-sidebar">
+                            {/* 统计卡片区域 */}
+                            <div className="stats-card">
+                                <h3>📊 占卜统计</h3>
+                                <div className="stats-grid">
+                                    <div className="stat-item">
+                                        <span className="stat-number">{history.length}</span>
+                                        <span className="stat-label">总占卜次数</span>
+                                    </div>
+                                    <div className="stat-item">
+                                        <span className="stat-number">{Object.keys(history.reduce((acc, item) => { acc[item.method] = true; return acc; }, {} as any)).length}</span>
+                                        <span className="stat-label">使用方法数</span>
+                                    </div>
+                                    <div className="stat-item">
+                                        <span className="stat-number">{history.filter(item => item.changingLines && item.changingLines.length > 0).length}</span>
+                                        <span className="stat-label">有变爻次数</span>
+                                    </div>                                                <div className="stat-item">
+                                                    <span className="stat-number">{history.length > 0 ? formatDate(history.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0]?.date || new Date()).split(' ')[0] : '-'}</span>
+                                                    <span className="stat-label">最近占卜</span>
+                                                </div>
+                                </div>
+                            </div>
+
+                            {/* 控制区域 */}
+                            <div className="controls-section">
+                                <h3>🎛️ 筛选控制</h3>
+                                <div className="filters-group">
+                                    <div className="filter-item">
+                                        <label>排序方式</label>
+                                        <select 
+                                            value={sortBy} 
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setSortBy(value === 'method' ? 'method' : 'date');
+                                            }}
+                                            className="control-select"
+                                        >
+                                            <option value="date">📅 按日期排序</option>
+                                            <option value="method">🔮 按方法排序</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div className="filter-item">
+                                        <label>筛选方法</label>
+                                        <select 
+                                            value={filterMethod} 
+                                            onChange={(e) => setFilterMethod(e.target.value)}
+                                            className="control-select"
+                                        >
+                                            <option value="all">📋 所有方法</option>
+                                            <option value="random">⚡ 快速占卜</option>
+                                            <option value="coin">🪙 三币占卜</option>
+                                            <option value="yarrow">🌾 蓍草占卜</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <button 
+                                    onClick={handleClearHistory}
+                                    className="danger-button"
+                                >
+                                    🗑️ 清空历史
+                                </button>
+                            </div>
+
+                            {/* 详情区域 */}
+                            <div className="history-detail">                            {selectedDivination ? (
+                                <div className="detail-content">
+                                    <div className="detail-header">
                                         <h3>占卜详情</h3>
-                                        <div className="detail-info">
-                                            <p><strong>时间:</strong> {formatDate(selectedDivination.date)}</p>
-                                            <p><strong>方法:</strong> {getMethodName(selectedDivination.method)}</p>
-                                            <p><strong>问题:</strong> {selectedDivination.question}</p>
+                                        <div className="detail-badge">
+                                            {getMethodName(selectedDivination.method)}
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="detail-info">
+                                        <div className="info-grid">
+                                            <div className="info-item">
+                                                <span className="info-icon">📅</span>
+                                                <div className="info-content">
+                                                    <span className="info-label">占卜时间</span>
+                                                    <span className="info-value">{formatDate(selectedDivination.date)}</span>
+                                                </div>
+                                            </div>
+                                            <div className="info-item">
+                                                <span className="info-icon">🔮</span>
+                                                <div className="info-content">
+                                                    <span className="info-label">占卜方法</span>
+                                                    <span className="info-value">{getMethodName(selectedDivination.method)}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                         
-                                        <HexagramDisplay hexagram={selectedDivination.hexagram} />
-                                        
-                                        {selectedDivination.changingLines && selectedDivination.changingLines.length > 0 && (
-                                            <div className="changing-lines-detail">
-                                                <h4>🔄 变爻信息</h4>
-                                                <p>第 {selectedDivination.changingLines.join(', ')} 爻为变爻</p>
-                                                {selectedDivination.secondaryHexagram && (
-                                                    <div className="secondary-hexagram">
-                                                        <h4>变化后的卦象：</h4>
-                                                        <HexagramDisplay hexagram={selectedDivination.secondaryHexagram} />
-                                                    </div>
-                                                )}
+                                        <div className="question-section">
+                                            <span className="info-icon">❓</span>
+                                            <div className="info-content">
+                                                <span className="info-label">占卜问题</span>
+                                                <div className="question-full">{selectedDivination.question}</div>
                                             </div>
-                                        )}
+                                        </div>
                                     </div>
-                                ) : (
-                                    <div className="no-selection">
-                                        <p>选择左侧的历史记录查看详情</p>
+                                    
+                                    <div className="hexagram-section">
+                                        <HexagramDisplay hexagram={selectedDivination.hexagram} />
                                     </div>
-                                )}
+                                    
+                                    {selectedDivination.changingLines && selectedDivination.changingLines.length > 0 && (
+                                        <div className="changing-lines-section">
+                                            <h4>🔄 变爻信息</h4>
+                                            <div className="changing-info">
+                                                <p>第 <strong>{selectedDivination.changingLines.join(', ')}</strong> 爻为变爻</p>
+                                                <div className="changing-note">
+                                                    变爻代表事态的转折点，需要特别关注这些爻的解释。
+                                                </div>
+                                            </div>
+                                            {selectedDivination.secondaryHexagram && (
+                                                <div className="secondary-hexagram">
+                                                    <h5>变化后的卦象</h5>
+                                                    <HexagramDisplay hexagram={selectedDivination.secondaryHexagram} />
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="no-selection">
+                                    <div className="selection-placeholder">
+                                        <div className="placeholder-icon">👈</div>
+                                        <h4>选择历史记录</h4>
+                                        <p>点击左侧的历史记录查看详细信息</p>
+                                    </div>
+                                </div>
+                            )}
                             </div>
                         </div>
-                    </>
-                )}
-            </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 };

@@ -1,5 +1,7 @@
-/* Profile page styles */
+/* Page-specific styles imports */
 @import './profile.css';
+@import './hexagram-detail.css';
+@import './about.css';
 
 body {
     font-family: 'Arial', sans-serif;
@@ -621,8 +623,9 @@ a:hover {
 
 .history-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: 20px;
+    align-items: start;
 }
 
 .history-list {
@@ -788,6 +791,132 @@ a:hover {
     font-style: italic;
 }
 
+/* History sidebar styles */
+.history-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.history-sidebar .stats-card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.history-sidebar .stats-card h3 {
+    margin: 0 0 15px 0;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--accent-purple);
+    padding-bottom: 8px;
+}
+
+.history-sidebar .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.history-sidebar .stat-item {
+    background: linear-gradient(135deg, var(--accent-blue), #2980b9);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+    transition: all 0.3s ease;
+}
+
+.history-sidebar .stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(52, 152, 219, 0.3);
+}
+
+.history-sidebar .stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.history-sidebar .stat-label {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    line-height: 1.2;
+}
+
+.history-sidebar .controls-section {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.history-sidebar .controls-section h3 {
+    margin: 0 0 15px 0;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--accent-green);
+    padding-bottom: 8px;
+}
+
+.history-sidebar .filter-sort {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-sidebar .filter-sort label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.history-sidebar .control-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.history-sidebar .control-select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.history-sidebar .clear-btn {
+    width: 100%;
+    margin-top: 15px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.history-sidebar .clear-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
 /* Dark theme support */
 :root {
     /* Light theme variables - Enhanced design */
@@ -838,6 +967,16 @@ a:hover {
 /* Smooth theme transition */
 * {
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme specific adjustments for history sidebar */
+[data-theme="dark"] .history-sidebar .stat-item {
+    background: linear-gradient(135deg, #1a365d, #2c5282);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .history-sidebar .stat-item:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
 }
 
 /* Enhanced animations */
@@ -1574,6 +1713,39 @@ a:hover {
     .relation-btn .btn-detail {
         font-size: 10px;
     }
+
+    /* History page responsive adjustments */
+    .history-layout {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .history-list {
+        order: 2;
+        max-height: 50vh;
+    }
+    
+    .history-sidebar {
+        order: 1;
+        gap: 15px;
+    }
+    
+    .history-sidebar .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .history-sidebar .stat-item {
+        padding: 12px;
+    }
+    
+    .history-sidebar .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .history-sidebar .filter-sort {
+        gap: 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1596,9 +1768,32 @@ a:hover {
         margin-bottom: 0;
         margin-right: 10px;
     }
-    
-    .relation-btn .btn-detail {
+      .relation-btn .btn-detail {
         font-size: 12px;
         text-align: left;
+    }
+
+    /* History page mobile adjustments */
+    .history-sidebar .stats-card,
+    .history-sidebar .controls-section {
+        padding: 15px;
+    }
+    
+    .history-sidebar .stats-card h3,
+    .history-sidebar .controls-section h3 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+    
+    .history-sidebar .stat-item {
+        padding: 10px;
+    }
+    
+    .history-sidebar .stat-number {
+        font-size: 1.3rem;
+    }
+    
+    .history-sidebar .stat-label {
+        font-size: 0.8rem;
     }
 }
