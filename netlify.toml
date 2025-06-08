@@ -1,6 +1,6 @@
 [build]
 base = "i-ching-app"
-publish = "i-ching-app/build"
+publish = "build" # Corrected: Relative to 'base'
 command = "npm ci && npm run build"
 
 [build.environment]
