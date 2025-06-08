@@ -1728,3 +1728,182 @@ a:hover {
 .network-link.dimmed {
     opacity: 0.2;
 }
+
+/* 卦象详情页相关卦象导航样式 */
+.hexagram-relations {
+    margin: 30px 0;
+    padding: 25px;
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.hexagram-relations h3 {
+    color: var(--accent-blue);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.relation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.relation-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 100px;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 3px solid transparent;
+}
+
+.relation-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+}
+
+.relation-btn .btn-label {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+    z-index: 2;
+    position: relative;
+}
+
+.relation-btn .btn-detail {
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    line-height: 1.2;
+    opacity: 0.9;
+    z-index: 2;
+    position: relative;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* 错卦按钮样式 */
+.relation-btn.inverse {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border-color: #e74c3c;
+}
+
+.relation-btn.inverse:hover {
+    background: linear-gradient(135deg, #f1c40f, #e67e22);
+    border-color: #f1c40f;
+}
+
+.relation-btn.inverse::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s;
+    opacity: 0;
+}
+
+.relation-btn.inverse:hover::before {
+    animation: shimmer 0.6s ease-in-out;
+}
+
+/* 综卦按钮样式 */
+.relation-btn.complement {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border-color: #3498db;
+}
+
+.relation-btn.complement:hover {
+    background: linear-gradient(135deg, #5dade2, #3498db);
+    border-color: #5dade2;
+}
+
+/* 互卦按钮样式 */
+.relation-btn.nuclear {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    border-color: #2ecc71;
+}
+
+.relation-btn.nuclear:hover {
+    background: linear-gradient(135deg, #58d68d, #2ecc71);
+    border-color: #58d68d;
+}
+
+/* 按钮发光动画 */
+@keyframes shimmer {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .relation-buttons {
+        gap: 15px;
+    }
+    
+    .relation-btn {
+        width: 100px;
+        height: 85px;
+    }
+    
+    .relation-btn .btn-label {
+        font-size: 24px;
+    }
+    
+    .relation-btn .btn-detail {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .relation-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .relation-btn {
+        width: 80%;
+        max-width: 200px;
+        height: 70px;
+        flex-direction: row;
+        padding: 0 15px;
+    }
+    
+    .relation-btn .btn-label {
+        font-size: 20px;
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+    
+    .relation-btn .btn-detail {
+        font-size: 12px;
+        text-align: left;
+    }
+}

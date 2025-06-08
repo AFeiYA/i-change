@@ -76,6 +76,47 @@ export function findNuclearHexagram(lines: boolean[]): boolean[] {
     return [...lowerTrigram, ...upperTrigram].filter((x): x is boolean => typeof x === 'boolean');
 }
 
+// 根据爻线数组查找对应的卦象
+export function findHexagramByLines(lines: boolean[], hexagrams: Hexagram[]): Hexagram | null {
+    for (const hexagram of hexagrams) {
+        const hexagramLines = getHexagramLines(hexagram);
+        if (areLinesEqual(lines, hexagramLines)) {
+            return hexagram;
+        }
+    }
+    return null;
+}
+
+// 查找相错卦
+export function findInverseHexagramById(hexagramId: number, hexagrams: Hexagram[]): Hexagram | null {
+    const hexagram = hexagrams.find(h => h.number === hexagramId);
+    if (!hexagram) return null;
+    
+    const lines = getHexagramLines(hexagram);
+    const inverseLines = findInverseHexagram(lines);
+    return findHexagramByLines(inverseLines, hexagrams);
+}
+
+// 查找相综卦
+export function findComplementHexagramById(hexagramId: number, hexagrams: Hexagram[]): Hexagram | null {
+    const hexagram = hexagrams.find(h => h.number === hexagramId);
+    if (!hexagram) return null;
+    
+    const lines = getHexagramLines(hexagram);
+    const complementLines = findComplementHexagram(lines);
+    return findHexagramByLines(complementLines, hexagrams);
+}
+
+// 查找互卦
+export function findNuclearHexagramById(hexagramId: number, hexagrams: Hexagram[]): Hexagram | null {
+    const hexagram = hexagrams.find(h => h.number === hexagramId);
+    if (!hexagram) return null;
+    
+    const lines = getHexagramLines(hexagram);
+    const nuclearLines = findNuclearHexagram(lines);
+    return findHexagramByLines(nuclearLines, hexagrams);
+}
+
 // 比较两个卦象是否相同
 export function areLinesEqual(lines1: boolean[], lines2: boolean[]): boolean {
     if (lines1.length !== lines2.length) return false;

@@ -5,9 +5,22 @@ import { HexagramNode, RelationType } from '../utils/hexagramRelations';
 
 const NetworkPage: React.FC = () => {
     const [selectedHexagram, setSelectedHexagram] = useState<HexagramNode | null>(null);
+    const [activeRelationFilters, setActiveRelationFilters] = useState<RelationType[]>([
+        RelationType.INVERSE,
+        RelationType.COMPLEMENT,
+        RelationType.NUCLEAR
+    ]);
 
     const handleNodeClick = (node: HexagramNode) => {
         setSelectedHexagram(node);
+    };
+
+    const toggleRelationFilter = (relationType: RelationType) => {
+        setActiveRelationFilters(prev => 
+            prev.includes(relationType)
+                ? prev.filter(r => r !== relationType)
+                : [...prev, relationType]
+        );
     };
 
     const relationDescriptions = {
@@ -55,7 +68,33 @@ const NetworkPage: React.FC = () => {
                         width={1000}
                         height={600}
                         enableFilters={true}
+                        relationFilters={activeRelationFilters}
                     />
+                    
+                    {/* 关系筛选按钮 */}
+                    <div className="relation-filter-buttons">
+                        <button
+                            className={`relation-btn ${activeRelationFilters.includes(RelationType.INVERSE) ? 'active' : ''}`}
+                            onClick={() => toggleRelationFilter(RelationType.INVERSE)}
+                            title="相错关系 - 卦象上下完全颠倒"
+                        >
+                            错
+                        </button>
+                        <button
+                            className={`relation-btn ${activeRelationFilters.includes(RelationType.COMPLEMENT) ? 'active' : ''}`}
+                            onClick={() => toggleRelationFilter(RelationType.COMPLEMENT)}
+                            title="相综关系 - 卦象左右翻转180度"
+                        >
+                            综
+                        </button>
+                        <button
+                            className={`relation-btn ${activeRelationFilters.includes(RelationType.NUCLEAR) ? 'active' : ''}`}
+                            onClick={() => toggleRelationFilter(RelationType.NUCLEAR)}
+                            title="互卦关系 - 由第2-5爻组成的内卦"
+                        >
+                            互
+                        </button>
+                    </div>
                     
                     <div className="relation-legend">
                         <h4>🎨 关系类型说明</h4>
