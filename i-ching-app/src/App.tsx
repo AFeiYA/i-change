@@ -7,7 +7,6 @@ import Footer from './components/Footer';
 import DivinationPage from './pages/DivinationPage';
 import ClassicsPage from './pages/ClassicsPage';
 import HexagramDetailPage from './pages/HexagramDetailPage';
-import NetworkPage from './pages/NetworkPage';
 import HistoryPage from './pages/HistoryPage';
 import ProfilePage from './pages/ProfilePage';
 import AboutPage from './pages/AboutPage';
