@@ -22,7 +22,6 @@ const App: React.FC = () => {
               <Route path="/divination" element={<DivinationPage />} />
               <Route path="/classics" element={<ClassicsPage />} />
               <Route path="/hexagram/:id" element={<HexagramDetailPage />} />
-              <Route path="/network" element={<NetworkPage />} />
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/about" element={<AboutPage />} />

@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Hexagram } from '../data/hexagrams';
+import { Link } from 'react-router-dom';
 import LineDetailModal from './LineDetailModal';
 
 interface InteractiveHexagramProps {
@@ -9,6 +10,13 @@ interface InteractiveHexagramProps {
     showChangingLines?: boolean;
     showLineDetails?: boolean; // 添加这个属性以保持兼容性
     enableLineClick?: boolean; // 新增：是否启用爻线点击功能
+    // 新增：相关卦象数据
+    relatedHexagrams?: {
+        opposite?: Hexagram;
+        reverse?: Hexagram;
+        nuclear?: Hexagram;
+    };
+    showRelatedHexagrams?: boolean; // 是否显示相关卦象
 }
 
 const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
@@ -17,7 +25,9 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
     changingLines = [],
     showChangingLines = false,
     showLineDetails = false,
-    enableLineClick = true
+    enableLineClick = true,
+    relatedHexagrams,
+    showRelatedHexagrams = false
 }) => {
     const [hoveredLine, setHoveredLine] = useState<number | null>(null);
     const [selectedLine, setSelectedLine] = useState<number | null>(null);
@@ -77,7 +87,7 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
                 )}
             </div>
         );
-    };return (
+    };    return (
         <div className="interactive-hexagram">
             <div className="hexagram-container">
                 <div className="hexagram-info">
@@ -93,6 +103,45 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
                     )}
                 </div>
             </div>
+            
+            {/* 相关卦象导航按钮 */}
+            {showRelatedHexagrams && relatedHexagrams && (
+                <div className="hexagram-relations">
+                    <h3>🔄 相关卦象</h3>
+                    <div className="relation-buttons">
+                        {relatedHexagrams.opposite && (
+                            <Link 
+                                to={`/hexagram/${relatedHexagrams.opposite.number}`} 
+                                className="relation-btn inverse"
+                                title={`相错卦 - 第${relatedHexagrams.opposite.number}卦 ${relatedHexagrams.opposite.chineseName}`}
+                            >
+                                <span className="btn-label">错</span>
+                                <span className="btn-detail">第{relatedHexagrams.opposite.number}卦<br/>相错卦</span>
+                            </Link>
+                        )}
+                        {relatedHexagrams.reverse && (
+                            <Link 
+                                to={`/hexagram/${relatedHexagrams.reverse.number}`} 
+                                className="relation-btn complement"
+                                title={`相综卦 - 第${relatedHexagrams.reverse.number}卦 ${relatedHexagrams.reverse.chineseName}`}
+                            >
+                                <span className="btn-label">综</span>
+                                <span className="btn-detail">第{relatedHexagrams.reverse.number}卦<br/>相综卦</span>
+                            </Link>
+                        )}
+                        {relatedHexagrams.nuclear && (
+                            <Link 
+                                to={`/hexagram/${relatedHexagrams.nuclear.number}`} 
+                                className="relation-btn nuclear"
+                                title={`相互卦 - 第${relatedHexagrams.nuclear.number}卦 ${relatedHexagrams.nuclear.chineseName}`}
+                            >
+                                <span className="btn-label">互</span>
+                                <span className="btn-detail">第{relatedHexagrams.nuclear.number}卦<br/>相互卦</span>
+                            </Link>
+                        )}
+                    </div>
+                </div>
+            )}
             
             {/* 爻线详细解析模态框 */}
             {selectedLine && (

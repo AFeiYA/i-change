@@ -205,42 +205,6 @@ export function analyzeRelation(hex1: HexagramNode, hex2: HexagramNode): Hexagra
     return null;
 }
 
-// 生成所有卦象的关系网络
-export function generateHexagramNetwork(hexagrams: Hexagram[]): {
-    nodes: HexagramNode[];
-    edges: HexagramEdge[];
-} {
-    const nodes: HexagramNode[] = hexagrams.map(hexagramToNode);
-    const edges: HexagramEdge[] = [];
-      // 分析每对卦象的关系
-    for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-            const node1 = nodes[i];
-            const node2 = nodes[j];
-            if (node1 && node2) {
-                const relation = analyzeRelation(node1, node2);
-                if (relation) {
-                    edges.push(relation);
-                    
-                    // 添加反向关系 (如果是对称关系)
-                    if (relation.relation === RelationType.INVERSE || 
-                        relation.relation === RelationType.COMPLEMENT) {
-                        edges.push({
-                            source: relation.target,
-                            target: relation.source,
-                            relation: relation.relation,
-                            weight: relation.weight,
-                            description: relation.description
-                        });
-                    }
-                }
-            }
-        }
-    }
-    
-    return { nodes, edges };
-}
-
 // 按关系类型过滤边
 export function filterEdgesByRelation(
     edges: HexagramEdge[], 
@@ -253,47 +217,7 @@ export function filterEdgesByRelation(
 export function findHexagramRelations(
     hexagramId: number, 
     edges: HexagramEdge[]
-): HexagramEdge[] {
-    return edges.filter(edge => 
+): HexagramEdge[] {    return edges.filter(edge => 
         edge.source === hexagramId || edge.target === hexagramId
     );
-}
-
-// 计算网络统计信息
-export interface NetworkStats {
-    totalNodes: number;
-    totalEdges: number;
-    relationCounts: Record<RelationType, number>;
-    averageConnections: number;
-    mostConnectedHexagram: { id: number; connections: number };
-}
-
-export function calculateNetworkStats(
-    nodes: HexagramNode[], 
-    edges: HexagramEdge[]
-): NetworkStats {
-    const relationCounts = Object.values(RelationType).reduce((acc, type) => {
-        acc[type] = edges.filter(edge => edge.relation === type).length;
-        return acc;
-    }, {} as Record<RelationType, number>);
-    
-    // 计算每个卦象的连接数
-    const connectionCounts = nodes.map(node => ({
-        id: node.id,
-        connections: edges.filter(edge => 
-            edge.source === node.id || edge.target === node.id
-        ).length
-    }));
-    
-    const mostConnected = connectionCounts.reduce((max, current) => 
-        current.connections > max.connections ? current : max
-    );
-    
-    return {
-        totalNodes: nodes.length,
-        totalEdges: edges.length,
-        relationCounts,
-        averageConnections: edges.length * 2 / nodes.length,
-        mostConnectedHexagram: mostConnected
-    };
 }

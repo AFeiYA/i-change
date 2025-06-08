@@ -45,9 +45,7 @@ const HexagramDetailPage: React.FC = () => {
                 <div className="detail">
                     <div className="hexagram">
                         <h1>第{hexagram.number}卦 - {hexagram.chineseName}</h1>
-                        <h2>{hexagram.name}</h2>
-                        
-                        {/* 交互式卦象显示 - 可点击爻线查看详细解析 */}
+                        <h2>{hexagram.name}</h2>                        {/* 交互式卦象显示 - 可点击爻线查看详细解析 */}
                         <div className="interactive-hexagram-section">
                             <div className="interaction-hint">
                                 💡 <strong>提示：</strong>点击任意爻线可查看该爻的详细含义和解析
@@ -56,47 +54,18 @@ const HexagramDetailPage: React.FC = () => {
                                 hexagram={hexagram}
                                 enableLineClick={true}
                                 showChangingLines={false}
+                                showRelatedHexagrams={true}
+                                relatedHexagrams={{
+                                    opposite: oppositeHexagram,
+                                    reverse: reverseHexagram,
+                                    nuclear: nuclearHexagram
+                                }}
                             />
-                        </div>                        <div className="trigram-info">
+                        </div>
+                        <div className="trigram-info">
                             <p><strong>上卦:</strong> {hexagram.trigrams.upper} | <strong>下卦:</strong> {hexagram.trigrams.lower}</p>
                         </div>
-                          {/* 相关卦象导航按钮 */}
-                        <div className="hexagram-relations">
-                            <h3>🔄 相关卦象</h3>
-                            <div className="relation-buttons">
-                                {oppositeHexagram && (
-                                    <Link 
-                                        to={`/hexagram/${oppositeHexagram.number}`} 
-                                        className="relation-btn inverse"
-                                        title={`错卦 - 第${oppositeHexagram.number}卦 ${oppositeHexagram.chineseName}`}
-                                    >
-                                        <span className="btn-label">错</span>
-                                        <span className="btn-detail">第{oppositeHexagram.number}卦<br/>{oppositeHexagram.chineseName}</span>
-                                    </Link>
-                                )}
-                                {reverseHexagram && (
-                                    <Link 
-                                        to={`/hexagram/${reverseHexagram.number}`} 
-                                        className="relation-btn complement"
-                                        title={`综卦 - 第${reverseHexagram.number}卦 ${reverseHexagram.chineseName}`}
-                                    >
-                                        <span className="btn-label">综</span>
-                                        <span className="btn-detail">第{reverseHexagram.number}卦<br/>{reverseHexagram.chineseName}</span>
-                                    </Link>
-                                )}
-                                {nuclearHexagram && (
-                                    <Link 
-                                        to={`/hexagram/${nuclearHexagram.number}`} 
-                                        className="relation-btn nuclear"
-                                        title={`互卦 - 第${nuclearHexagram.number}卦 ${nuclearHexagram.chineseName}`}
-                                    >
-                                        <span className="btn-label">互</span>
-                                        <span className="btn-detail">第{nuclearHexagram.number}卦<br/>{nuclearHexagram.chineseName}</span>
-                                    </Link>
-                                )}
-                            </div>
-                        </div>
-                        
+
                         <div className="hexagram-content">
                             <section>
                                 <h3>🎋 卦象描述</h3>
