@@ -41,9 +41,8 @@ const HexagramDetailPage: React.FC = () => {
                                 showChangingLines={false}
                             />
                         </div>
-                        
-                        <div className="trigram-info">
-                            <p><strong>上卦:</strong> {hexagram.upperTrigram} | <strong>下卦:</strong> {hexagram.lowerTrigram}</p>
+                          <div className="trigram-info">
+                            <p><strong>上卦:</strong> {hexagram.trigrams.upper} | <strong>下卦:</strong> {hexagram.trigrams.lower}</p>
                         </div>
                         
                         <div className="hexagram-content">

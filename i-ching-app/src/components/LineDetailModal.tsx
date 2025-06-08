@@ -25,25 +25,40 @@ const LineDetailModal: React.FC<LineDetailModalProps> = ({
 }) => {
     if (!isOpen) return null;    // 从hexagram.lines数组中获取对应爻线（注意索引转换）
     const lineIndex = linePosition - 1;
-    const lineString = hexagram.lines[lineIndex];
+    const lineType = hexagram.lines[lineIndex];
     
-    if (!lineString) {
+    if (!lineType) {
         return null; // 如果没有找到对应的爻线，不显示模态框
     }
     
-    const isYang = !lineString.includes(' '); // 实线为阳爻，虚线为阴爻
+    const isYang = lineType === '---';
 
-    // 生成爻线详细信息（这里是示例数据，实际应该从数据库获取）
+    // 获取爻辞文本
+    const getLineText = (): string => {
+        const lineTexts = hexagram.lineTexts;
+        switch (linePosition) {
+            case 1: return lineTexts.line1;
+            case 2: return lineTexts.line2;
+            case 3: return lineTexts.line3;
+            case 4: return lineTexts.line4;
+            case 5: return lineTexts.line5;
+            case 6: return lineTexts.line6;
+            default: return '';
+        }
+    };
+
+    // 生成爻线详细信息
     const getLineDetail = (): LineDetail => {
         const lineNames = ['初', '二', '三', '四', '五', '上'];
         const positionName = lineNames[linePosition - 1];
+        const lineText = getLineText();
         
         return {
             position: linePosition,
             type: isYang ? 'yang' : 'yin',
             name: `${isYang ? '九' : '六'}${positionName}`,
             description: `第${linePosition}爻：${isYang ? '阳爻' : '阴爻'}`,
-            meaning: getLineMeaning(hexagram.number, linePosition, isYang),
+            meaning: lineText || getLineMeaning(hexagram.number, linePosition, isYang),
             advice: getLineAdvice(hexagram.number, linePosition, isYang)
         };
     };

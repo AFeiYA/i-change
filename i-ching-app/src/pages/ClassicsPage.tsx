@@ -21,12 +21,12 @@ const ClassicsPage: React.FC = () => {
                             <h4>{hexagram.chineseName}</h4>
                             <p>{hexagram.name}</p>
                             <div className="trigram-info">
-                                <small>{hexagram.upperTrigram} ☰ {hexagram.lowerTrigram}</small>
+                                <small>{hexagram.trigrams.upper} ☰ {hexagram.trigrams.lower}</small>
                             </div>
                             <div className="hexagram-preview">
                                 {hexagram.lines.slice(0, 3).map((line, index) => (
                                     <div key={index} className="line-small">
-                                        {line}
+                                        {line === '---' ? '━━━' : '━ ━'}
                                     </div>
                                 )).reverse()}
                             </div>

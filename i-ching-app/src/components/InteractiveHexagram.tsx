@@ -33,22 +33,20 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
             setSelectedLine(lineIndex + 1); // 转换为1-6的位置
             setIsModalOpen(true);
         }
-    }, [onLineClick, enableLineClick]);
-
-    const closeModal = useCallback(() => {
+    }, [onLineClick, enableLineClick]);    const closeModal = useCallback(() => {
         setIsModalOpen(false);
         setSelectedLine(null);
-    }, []);    const renderLine = (lineStr: string, index: number) => {
-        // 将字符串形式的爻线转换为数字（1为阳爻，0为阴爻）
-        const line = lineStr.includes(' ') ? 0 : 1; // 包含空格的是阴爻，实线是阳爻
+    }, []);    const renderLine = (line: string, index: number) => {
+        const isYang = line === '---';
         const isChanging = changingLines.includes(index + 1);
         const isHovered = hoveredLine === index;
         const isClickable = enableLineClick || !!onLineClick;
         const shouldShowChanging = showChangingLines || showLineDetails;
 
-        return (<div
+        return (
+            <div
                 key={index}
-                className={`hexagram-line ${line === 1 ? 'yang' : 'yin'} ${
+                className={`hexagram-line ${isYang ? 'yang' : 'yin'} ${
                     isChanging && shouldShowChanging ? 'changing' : ''
                 } ${isHovered ? 'hovered' : ''} ${isClickable ? 'clickable' : ''}`}
                 onClick={() => isClickable && handleLineClick(index)}
@@ -63,7 +61,7 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
                     }
                 }}
             >
-                {line === 1 ? (
+                {isYang ? (
                     // 阳爻 - 实线
                     <div className="line-solid" />
                 ) : (
@@ -72,13 +70,14 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
                         <div className="line-segment" />
                         <div className="line-gap" />
                         <div className="line-segment" />
-                    </div>                )}
+                    </div>
+                )}
                 {isChanging && shouldShowChanging && (
                     <div className="changing-indicator">○</div>
                 )}
             </div>
         );
-    };    return (
+    };return (
         <div className="interactive-hexagram">
             <div className="hexagram-container">
                 <div className="hexagram-info">

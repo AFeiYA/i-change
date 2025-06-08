@@ -48,8 +48,8 @@ export function hexagramToNode(hexagram: Hexagram): HexagramNode {
         chineseName: hexagram.chineseName || hexagram.name,
         symbol: hexagram.unicode,
         lines: getHexagramLines(hexagram),
-        upperTrigram: hexagram.upperTrigram,
-        lowerTrigram: hexagram.lowerTrigram,
+        upperTrigram: hexagram.trigrams.upper,
+        lowerTrigram: hexagram.trigrams.lower,
         group: Math.floor((hexagram.number - 1) / 8) // 按8个一组分类
     };
 }

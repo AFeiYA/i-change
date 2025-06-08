@@ -2,8 +2,7 @@ export interface Hexagram {
   number: number;
   name: string;
   chineseName: string;
-  description: string;
-  lines: ('yin' | 'yang')[];
+  description: string;  lines: string[];
   unicode: string;
   interpretation: string;
   advice: string;
@@ -25,8 +24,8 @@ export interface Hexagram {
 }
 
 // 将二进制码转换为线条数组的辅助函数
-function convertBinaryToLines(binary: string): ('yin' | 'yang')[] {
-  return binary.split('').map(bit => bit === '1' ? 'yang' : 'yin');
+function convertBinaryToLines(binary: string): string[] {
+  return binary.split('').map(bit => bit === '1' ? '---' : '- -');
 }
 
 // 中文名称到英文名称的映射

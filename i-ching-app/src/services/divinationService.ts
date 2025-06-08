@@ -10,14 +10,13 @@ export interface DivinationResult {
 
 // 根据爻线数组获取卦象编号
 const getHexagramByLines = (lines: number[]): Hexagram => {
-    // 二进制转换为十进制来匹配卦象
+    // 将数字数组转换为对应的二进制字符串
     const binaryString = lines.join('');
-    const decimal = parseInt(binaryString, 2);
     
-    // 简化版本：根据特征模式匹配
+    // 查找匹配的卦象
     for (let hexagram of hexagrams) {
-        const hexagramBinary = hexagram.lines.map(line => line === "━━━" ? 1 : 0);
-        if (JSON.stringify(hexagramBinary) === JSON.stringify(lines)) {
+        const hexagramBinary = hexagram.lines.map(line => line === "---" ? '1' : '0').join('');
+        if (hexagramBinary === binaryString) {
             return hexagram;
         }
     }

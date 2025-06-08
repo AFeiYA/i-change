@@ -14,18 +14,16 @@ const HexagramDisplay: React.FC<HexagramDisplayProps> = ({ hexagram }) => {
                 {/* Unicode字符表示 */}
                 <div className="hexagram-unicode">
                     <span className="unicode-symbol">{hexagram.unicode}</span>
-                </div>
-                
-                <div className="hexagram-lines">
+                </div>                <div className="hexagram-lines">
                     {hexagram.lines.map((line, index) => (
                         <div key={index} className="line">
-                            {line}
+                            {line === '---' ? '━━━' : '━ ━'}
                         </div>
                     )).reverse()}
                 </div>
                 
                 <div className="trigram-info">
-                    <p><strong>上卦:</strong> {hexagram.upperTrigram} | <strong>下卦:</strong> {hexagram.lowerTrigram}</p>
+                    <p><strong>上卦:</strong> {hexagram.trigrams.upper} | <strong>下卦:</strong> {hexagram.trigrams.lower}</p>
                 </div>
                 
                 <div className="hexagram-info">
