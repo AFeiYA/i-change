@@ -1,0 +1,210 @@
+/* Responsive design */
+
+/* Mobile First Approach */
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+    padding: var(--spacing-md) 0;
+  }
+  
+  .header h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .hexagram-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--spacing-sm);
+  }
+  
+  .hexagram-card {
+    padding: var(--spacing-sm);
+  }
+  
+  .hexagram-symbol {
+    font-size: var(--font-size-2xl) !important;
+  }
+  
+  .hexagram-name {
+    font-size: var(--font-size-xs);
+  }
+  
+  .divination-buttons .btn {
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+  }
+  
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trigram-info {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .related-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .related-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .data-actions {
+    flex-direction: column;
+  }
+  
+  .data-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    width: 92%;
+  }
+  
+  .hexagram-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+  
+  .grid-3, .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .divination-buttons .btn {
+    max-width: 250px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 90%;
+  }
+  
+  .hexagram-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .hexagram-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+/* Print Styles */
+@media print {
+  * {
+    color: black !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+  
+  .nav, .theme-toggle-btn, .divination-buttons, .data-actions {
+    display: none !important;
+  }
+  
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .card {
+    break-inside: avoid;
+    border: 1px solid black !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .hexagram-symbol {
+    font-size: 2rem !important;
+  }
+  
+  .header {
+    background: white !important;
+    color: black !important;
+    border-bottom: 2px solid black !important;
+  }
+  
+  .footer {
+    border-top: 1px solid black !important;
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hexagram-symbol {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .nav li {
+    width: auto;
+  }
+  
+  .hexagram-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .card:hover, .btn:hover, .hexagram-card:hover {
+    transform: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .card, .btn, .hexagram-card {
+    border: 2px solid;
+  }
+  
+  .btn {
+    font-weight: bold;
+  }
+}

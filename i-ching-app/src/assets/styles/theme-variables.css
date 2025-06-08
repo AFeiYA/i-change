@@ -1,0 +1,122 @@
+/* CSS Variables and Theme Definitions */
+:root {
+  /* Light Theme Colors */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f7fafc;
+  --text-primary: #1a202c;
+  --text-secondary: #2d3748;
+  --text-muted: #718096;
+  
+  /* Brand Colors */
+  --accent-blue: #3182ce;
+  --accent-green: #38a169;
+  --accent-orange: #dd6b20;
+  --accent-red: #dc3545;
+  --accent-purple: #805ad5;
+  
+  /* Interactive Colors */
+  --btn-primary: #3182ce;
+  --btn-primary-hover: #2c5282;
+  --btn-secondary: #718096;
+  --btn-secondary-hover: #4a5568;
+  --btn-success: #38a169;
+  --btn-danger: #dc3545;
+  
+  /* Border and Shadow */
+  --border-color: #e2e8f0;
+  --border-radius: 8px;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(0, 0, 0, 0.15);
+  
+  /* Gradients */
+  --bg-gradient: linear-gradient(135deg, #2980b9, #3498db);
+  --card-gradient: linear-gradient(145deg, #ffffff, #f7fafc);
+  
+  /* Card Colors */
+  --card-bg: #ffffff;
+  --card-hover: #f7fafc;
+  --success-bg: #f0fff4;
+  --warning-bg: #fffbeb;
+  --error-bg: #fed7d7;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Typography */
+  --font-family: 'Arial', sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1e2732;
+  --bg-tertiary: #2d3748;
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #a0aec0;
+  
+  --btn-primary: #60a5fa;
+  --btn-primary-hover: #3b82f6;
+  --btn-secondary: #a0aec0;
+  --btn-secondary-hover: #e2e8f0;
+  
+  --border-color: #4a5568;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow-hover: rgba(0, 0, 0, 0.7);
+  
+  --bg-gradient: linear-gradient(135deg, #1a365d, #2c5282);
+  --card-gradient: linear-gradient(145deg, #1a202c, #2d3748);
+  
+  --card-bg: #1a202c;
+  --card-hover: #2d3748;
+  --success-bg: #065f46;
+  --warning-bg: #92400e;
+  --error-bg: #991b1b;
+}
+
+/* Smooth theme transition */
+* {
+  transition: background-color var(--transition-normal), 
+              color var(--transition-normal),
+              border-color var(--transition-normal);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+  }
+  
+  [data-theme="dark"] {
+    --border-color: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

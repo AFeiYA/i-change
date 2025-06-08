@@ -1,0 +1,214 @@
+/* Hexagram specific styles */
+.hexagram-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.hexagram-content section {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.hexagram-content h2 {
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--accent-blue);
+  padding-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.hexagram-content h3 {
+  color: var(--accent-blue);
+  margin-top: var(--spacing-lg);
+}
+
+.hexagram-display {
+  text-align: center;
+  margin: var(--spacing-xl) 0;
+}
+
+.hexagram-symbol-large {
+  font-size: 4rem;
+  margin: var(--spacing-md) 0;
+  color: var(--text-secondary);
+}
+
+.hexagram-info {
+  margin: var(--spacing-md) 0;
+}
+
+.hexagram-name-large {
+  font-size: var(--font-size-2xl);
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: var(--spacing-sm) 0;
+}
+
+.hexagram-number-large {
+  font-size: var(--font-size-lg);
+  color: var(--text-muted);
+}
+
+/* Interactive Hexagram styles */
+.interactive-hexagram {
+  text-align: center;
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.interactive-hexagram .hexagram-symbol {
+  font-size: 3rem;
+  cursor: pointer;
+  transition: transform var(--transition-normal);
+}
+
+.interactive-hexagram .hexagram-symbol:hover {
+  transform: scale(1.1);
+}
+
+.trigram-info {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--spacing-md) 0;
+  gap: var(--spacing-md);
+}
+
+.trigram {
+  flex: 1;
+  padding: var(--spacing-sm);
+  background: var(--bg-tertiary);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.trigram-symbol {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-xs);
+}
+
+.trigram-name {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+/* Related hexagrams */
+.related-hexagrams {
+  margin-top: var(--spacing-lg);
+}
+
+.related-hexagrams h4 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-secondary);
+}
+
+.related-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.related-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--btn-secondary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-normal);
+}
+
+.related-btn:hover {
+  background: var(--btn-secondary-hover);
+  transform: translateY(-1px);
+}
+
+/* Hexagram display and lines */
+.hexagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.hexagram-lines {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.hexagram-lines-large {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.line {
+  width: 80px;
+  height: 8px;
+  background: var(--text-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.line:hover {
+  background: var(--accent-blue);
+  transform: scale(1.05);
+}
+
+.line.broken {
+  background: transparent;
+}
+
+.line.broken::before,
+.line.broken::after {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 8px;
+  background: var(--text-primary);
+  border-radius: 4px;
+  transition: all var(--transition-normal);
+}
+
+.line.broken::before {
+  left: 0;
+}
+
+.line.broken::after {
+  right: 0;
+}
+
+.line.broken:hover::before,
+.line.broken:hover::after {
+  background: var(--accent-blue);
+}
+
+.line.changing {
+  background: var(--accent-orange);
+  animation: lineGlow 1.5s infinite;
+}
+
+.line.changing.broken::before,
+.line.changing.broken::after {
+  background: var(--accent-orange);
+}
+
+@keyframes lineGlow {
+  0%, 100% { box-shadow: 0 0 5px var(--accent-orange); }
+  50% { box-shadow: 0 0 15px var(--accent-orange); }
+}
