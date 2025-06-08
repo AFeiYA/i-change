@@ -108,35 +108,34 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
             {showRelatedHexagrams && relatedHexagrams && (
                 <div className="hexagram-relations">
                     <h3>🔄 相关卦象</h3>
-                    <div className="relation-buttons">
-                        {relatedHexagrams.opposite && (
+                    <div className="relation-buttons">                        {relatedHexagrams.opposite && (
                             <Link 
                                 to={`/hexagram/${relatedHexagrams.opposite.number}`} 
                                 className="relation-btn inverse"
-                                title={`相错卦 - 第${relatedHexagrams.opposite.number}卦 ${relatedHexagrams.opposite.chineseName}`}
+                                title={`错卦 - 第${relatedHexagrams.opposite.number}卦 ${relatedHexagrams.opposite.chineseName}`}
                             >
                                 <span className="btn-label">错</span>
-                                <span className="btn-detail">第{relatedHexagrams.opposite.number}卦<br/>相错卦</span>
+                                <span className="btn-detail">第{relatedHexagrams.opposite.number}卦<br/>{relatedHexagrams.opposite.chineseName}</span>
                             </Link>
                         )}
                         {relatedHexagrams.reverse && (
                             <Link 
                                 to={`/hexagram/${relatedHexagrams.reverse.number}`} 
                                 className="relation-btn complement"
-                                title={`相综卦 - 第${relatedHexagrams.reverse.number}卦 ${relatedHexagrams.reverse.chineseName}`}
+                                title={`综卦 - 第${relatedHexagrams.reverse.number}卦 ${relatedHexagrams.reverse.chineseName}`}
                             >
                                 <span className="btn-label">综</span>
-                                <span className="btn-detail">第{relatedHexagrams.reverse.number}卦<br/>相综卦</span>
+                                <span className="btn-detail">第{relatedHexagrams.reverse.number}卦<br/>{relatedHexagrams.reverse.chineseName}</span>
                             </Link>
                         )}
                         {relatedHexagrams.nuclear && (
                             <Link 
                                 to={`/hexagram/${relatedHexagrams.nuclear.number}`} 
                                 className="relation-btn nuclear"
-                                title={`相互卦 - 第${relatedHexagrams.nuclear.number}卦 ${relatedHexagrams.nuclear.chineseName}`}
+                                title={`互卦 - 第${relatedHexagrams.nuclear.number}卦 ${relatedHexagrams.nuclear.chineseName}`}
                             >
                                 <span className="btn-label">互</span>
-                                <span className="btn-detail">第{relatedHexagrams.nuclear.number}卦<br/>相互卦</span>
+                                <span className="btn-detail">第{relatedHexagrams.nuclear.number}卦<br/>{relatedHexagrams.nuclear.chineseName}</span>
                             </Link>
                         )}
                     </div>
