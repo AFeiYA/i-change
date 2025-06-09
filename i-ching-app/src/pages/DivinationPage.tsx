@@ -115,7 +115,52 @@ const DivinationPage: React.FC = () => {
             <div className="divination-page">
                 <h1>🎋 易经占卜</h1>
                 <p>诚心求卦，静心思考你想要了解的问题，然后选择占卜方式：</p>
-                
+                                {isDrawing && (
+                    <div className="drawing-animation">
+                        <p>🔮 天机运转中，请稍候...</p>
+                        <div className="loading-spinner"></div>
+                    </div>
+                )}
+
+                {divinationResult && !isDrawing && (
+                    <div className="divination-result">
+                        <InteractiveHexagram 
+                            hexagram={divinationResult.hexagram} 
+                            changingLines={divinationResult.changingLines}
+                            showLineDetails={true}
+                            enableLineClick={true}
+                        />
+                        
+                        <div className="line-click-hint">
+                            💡 <strong>提示：</strong>点击任意爻线查看详细解析
+                        </div>
+                        
+                        {divinationResult.changingLines && divinationResult.changingLines.length > 0 && (
+                            <div className="changing-lines">
+                                <h3>🔄 变爻信息</h3>
+                                <p>第 {divinationResult.changingLines.join(', ')} 爻为变爻</p>
+                                {divinationResult.secondaryHexagram && (
+                                    <div className="secondary-hexagram">
+                                        <h4>变化后的卦象：</h4>
+                                        <InteractiveHexagram 
+                                            hexagram={divinationResult.secondaryHexagram}
+                                            showLineDetails={false}
+                                            enableLineClick={true}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        <div className="method-info">
+                            <small>占卜方法：{
+                                divinationResult.method === 'random' ? '快速占卜' :
+                                divinationResult.method === 'coin' ? '三币占卜' :
+                                divinationResult.method === 'yarrow' ? '蓍草占卜' : '未知'
+                            }</small>
+                        </div>
+                    </div>
+                )}
                 <div className="question-input">
                     <label htmlFor="question">您的问题（可选）：</label>
                     <textarea
@@ -166,52 +211,7 @@ const DivinationPage: React.FC = () => {
                     </div>
                 </div>
 
-                {isDrawing && (
-                    <div className="drawing-animation">
-                        <p>🔮 天机运转中，请稍候...</p>
-                        <div className="loading-spinner"></div>
-                    </div>
-                )}
 
-                {divinationResult && !isDrawing && (
-                    <div className="divination-result">
-                        <InteractiveHexagram 
-                            hexagram={divinationResult.hexagram} 
-                            changingLines={divinationResult.changingLines}
-                            showLineDetails={true}
-                            enableLineClick={true}
-                        />
-                        
-                        <div className="line-click-hint">
-                            💡 <strong>提示：</strong>点击任意爻线查看详细解析
-                        </div>
-                        
-                        {divinationResult.changingLines && divinationResult.changingLines.length > 0 && (
-                            <div className="changing-lines">
-                                <h3>🔄 变爻信息</h3>
-                                <p>第 {divinationResult.changingLines.join(', ')} 爻为变爻</p>
-                                {divinationResult.secondaryHexagram && (
-                                    <div className="secondary-hexagram">
-                                        <h4>变化后的卦象：</h4>
-                                        <InteractiveHexagram 
-                                            hexagram={divinationResult.secondaryHexagram}
-                                            showLineDetails={false}
-                                            enableLineClick={true}
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                        )}
-
-                        <div className="method-info">
-                            <small>占卜方法：{
-                                divinationResult.method === 'random' ? '快速占卜' :
-                                divinationResult.method === 'coin' ? '三币占卜' :
-                                divinationResult.method === 'yarrow' ? '蓍草占卜' : '未知'
-                            }</small>
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     );
