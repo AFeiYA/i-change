@@ -207,10 +207,7 @@
   animation: shimmer 3s infinite;
 }
 
-@keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
+/* @keyframes shimmer defined below, assuming it's the same */
 
 .hexagram-detail-page .hint-icon {
   font-size: 1.5rem;
@@ -514,4 +511,271 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* --- Appended from main.css (Hexagram Detail Page Specific Layout Styles) --- */
+/* 详情页面样式 */
+.hexagram-detail {
+    padding: 20px 0;
+}
+
+.back-link { /* From main.css - this will override the .hexagram-detail-page .back-link above if specificity is lower or equal */
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background: var(--button-secondary-bg);
+    color: var(--text-on-secondary-button);
+    border-radius: 25px;
+    transition: background 0.3s ease;
+}
+
+.back-link:hover {
+    background: var(--button-secondary-hover-bg);
+    text-decoration: none;
+}
+
+.hexagram-content {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hexagram-content section {
+    margin: 30px 0;
+    padding: 20px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-blue);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.hexagram-content section h3 {
+    color: var(--text-secondary);
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+}
+
+.hexagram-content section p {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 卦象详情页面的交互式卦象样式 */
+.interactive-hexagram-section {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.interaction-hint { /* From main.css - will override .hexagram-detail-page .interaction-hint */
+    background: var(--interaction-hint-bg-light);
+    border: 1px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    color: var(--text-primary);
+    font-size: 0.95em;
+    box-shadow: 0 2px 8px var(--interaction-hint-shadow-light);
+}
+
+[data-theme="dark"] .interaction-hint { /* From main.css - will override .hexagram-detail-page [data-theme="dark"] .interaction-hint */
+    background: var(--interaction-hint-bg-dark);
+    border-color: var(--accent-blue);
+}
+
+.hexagram-detail .interactive-hexagram {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.hexagram-detail .hexagram-container {
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.hexagram-detail .hexagram-info {
+    min-width: 200px;
+}
+
+.hexagram-detail .hexagram-lines {
+    flex: 1;
+    max-width: 200px;
+}
+
+/* 卦象详情页相关卦象导航样式 */
+.hexagram-relations {
+    margin: 30px 0;
+    padding: 25px;
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.hexagram-relations h3 {
+    color: var(--accent-blue);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.relation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.relation-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 100px;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--shadow-relation-btn);
+    border: 3px solid transparent;
+}
+
+.relation-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px var(--shadow-relation-btn-hover);
+    text-decoration: none;
+}
+
+.relation-btn .btn-label {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-on-accent);
+    text-shadow: 2px 2px 4px var(--text-shadow-relation-btn-label);
+    margin-bottom: 5px;
+    z-index: 2;
+    position: relative;
+}
+
+.relation-btn .btn-detail {
+    font-size: 11px;
+    color: var(--text-on-accent);
+    text-align: center;
+    line-height: 1.2;
+    opacity: 0.9;
+    z-index: 2;
+    position: relative;
+    text-shadow: 1px 1px 2px var(--text-shadow-relation-btn-detail);
+}
+
+/* 错卦按钮样式 */
+.relation-btn.inverse {
+    background: var(--gradient-relation-inverse);
+    border-color: var(--danger-color);
+}
+
+.relation-btn.inverse:hover {
+    background: var(--gradient-relation-inverse-hover);
+    border-color: var(--accent-orange-darker);
+}
+
+.relation-btn.inverse::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--gradient-shimmer-effect);
+    transform: rotate(45deg);
+    transition: all 0.6s;
+    opacity: 0;
+}
+
+.relation-btn.inverse:hover::before {
+    animation: shimmer 0.6s ease-in-out;
+}
+
+/* 综卦按钮样式 */
+.relation-btn.complement {
+    background: var(--gradient-relation-complement);
+    border-color: var(--accent-blue);
+}
+
+.relation-btn.complement:hover {
+    background: var(--gradient-relation-complement-hover);
+    border-color: var(--accent-blue-lighter);
+}
+
+/* 互卦按钮样式 */
+.relation-btn.nuclear {
+    background: var(--gradient-relation-nuclear);
+    border-color: var(--accent-green);
+}
+
+.relation-btn.nuclear:hover {
+    background: var(--gradient-relation-nuclear-hover);
+    border-color: var(--accent-green-lighter);
+}
+
+/* 按钮发光动画 */
+@keyframes shimmer { /* This might conflict if already defined in hexagram-detail.css */
+  0% {
+    opacity: 0;
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Responsive design for relation buttons */
+@media (max-width: 768px) {
+    .relation-buttons {
+        gap: 15px;
+    }
+
+    .relation-btn {
+        width: 100px;
+        height: 85px;
+    }
+
+    .relation-btn .btn-label {
+        font-size: 24px;
+    }
+
+    .relation-btn .btn-detail {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .relation-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .relation-btn {
+        width: 80%;
+        max-width: 200px;
+        height: 70px;
+        flex-direction: row;
+        padding: 0 15px;
+    }
+
+    .relation-btn .btn-label {
+        font-size: 20px;
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+      .relation-btn .btn-detail {
+        font-size: 12px;
+        text-align: left;
+    }
 }

@@ -119,14 +119,14 @@
   display: block;
 }
 
-.stat-number {
+.stat-card .stat-number { /* Scoped to .stat-card */
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: inherit;
 }
 
-.stat-label {
+.stat-card .stat-label { /* Scoped to .stat-card */
   font-size: 0.9rem;
   opacity: 0.8;
   color: inherit;
@@ -495,7 +495,7 @@
     font-size: 2rem;
   }
   
-  .stat-number {
+  .stat-card .stat-number { /* Scoped to .stat-card */
     font-size: 2rem;
   }
 }
@@ -528,6 +528,83 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* --- Appended from main.css (Profile Page Specific Styles) --- */
+/* 个人资料页面样式 */
+.stats { /* This is a more generic container than .stats-section .stats-grid */
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stats .stat-item { /* Simpler stat item, may conflict or complement .stat-card */
+    text-align: center;
+    padding: 20px;
+    background: var(--gradient-stat-item);
+    color: var(--text-on-accent);
+    border-radius: 15px;
+    min-width: 120px;
+    box-shadow: 0 4px 15px var(--shadow-accent-purple);
+}
+
+.stats .stat-item .stat-number { /* Scoped to this simpler .stat-item */
+    display: block;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stats .stat-item .stat-label { /* Scoped to this simpler .stat-item */
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.favorite-list { /* This is distinct from .favorite-methods */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.favorite-item {
+    padding: 8px 15px;
+    background: var(--accent-blue);
+    color: var(--text-on-accent);
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.settings {
+    margin: 20px 0;
+}
+
+.btn-danger { /* General danger button style, may also exist in buttons.css */
+    background: var(--button-danger-bg);
+    color: var(--text-on-danger);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1em;
+}
+
+.btn-danger:hover {
+    background: var(--button-danger-hover-bg);
+}
+
+.app-info {
+    background: var(--bg-tertiary);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.app-info p {
+    margin: 8px 0;
 }
 
 @keyframes slideInUp {

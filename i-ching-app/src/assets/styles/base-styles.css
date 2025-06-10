@@ -104,3 +104,36 @@ a:hover {
   from { transform: translateX(-100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
+
+/* --- Appended from main.css (Core Global Styles) --- */
+body { /* Note: This is a duplicate definition from main.css. Review needed. */
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3 { /* Note: This is a simpler duplicate from main.css. Review needed. */
+    color: var(--text-secondary);
+}
+
+a { /* Note: This is a simpler duplicate from main.css. Review needed. */
+    text-decoration: none;
+    color: var(--accent-blue);
+    transition: color 0.3s ease;
+}
+
+a:hover { /* Note: This is a simpler duplicate from main.css. Review needed. */
+    text-decoration: underline;
+    color: var(--accent-blue);
+}
+
+.container { /* Note: This is a simpler duplicate from main.css. Review needed. */
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}

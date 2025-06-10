@@ -52,7 +52,7 @@
 .question-input textarea:focus {
   outline: none;
   border-color: var(--accent-blue);
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3); /* Will be replaced by var in main.css cleanup */
 }
 
 .question-input textarea:disabled {
@@ -144,3 +144,1062 @@
   margin: 0;
   font-size: var(--font-size-sm);
 }
+
+/* --- About Page Specific Styles (from about.css) --- */
+
+/* AboutPage Styles */
+.about-page { /* This will override the .about-page rule above due to order */
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Background decoration */
+.about-page .background-decoration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.about-page .floating-symbols {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.about-page .floating-symbols span {
+  position: absolute;
+  font-size: 3rem;
+  color: var(--text-muted);
+  opacity: 0.08;
+  animation: gentleFloat 12s ease-in-out infinite;
+}
+
+.about-page .floating-symbols span:nth-child(1) {
+  top: 15%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.about-page .floating-symbols span:nth-child(2) {
+  top: 45%;
+  right: 12%;
+  animation-delay: 3s;
+}
+
+.about-page .floating-symbols span:nth-child(3) {
+  top: 70%;
+  left: 75%;
+  animation-delay: 6s;
+}
+
+.about-page .floating-symbols span:nth-child(4) {
+  top: 25%;
+  left: 60%;
+  animation-delay: 9s;
+}
+
+.about-page .floating-symbols span:nth-child(5) {
+  top: 85%;
+  left: 25%;
+  animation-delay: 12s;
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.08;
+  }
+  25% {
+    transform: translateY(-15px) rotate(5deg);
+    opacity: 0.12;
+  }
+  50% {
+    transform: translateY(-25px) rotate(0deg);
+    opacity: 0.15;
+  }
+  75% {
+    transform: translateY(-10px) rotate(-5deg);
+    opacity: 0.12;
+  }
+}
+
+/* Page header */
+.about-page .page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 3rem 2rem;
+  background: var(--card-bg);
+  border-radius: 25px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-page .page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-gradient);
+  opacity: 0.05;
+  border-radius: 25px;
+}
+
+.about-page .page-header h1 {
+  font-size: 3.2rem;
+  margin: 0 0 1rem 0;
+  background: var(--bg-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.about-page .page-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-style: italic;
+  position: relative;
+  opacity: 0.9;
+}
+
+/* Content sections */
+.about-page .content-sections {
+  display: grid;
+  gap: 2rem;
+}
+
+.about-page .content-section {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-page .content-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--bg-gradient);
+  transition: width 0.3s ease;
+}
+
+.about-page .content-section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.about-page .content-section:hover::before {
+  width: 10px;
+}
+
+.about-page .section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.about-page .section-icon {
+  font-size: 2.2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-gradient);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  animation: pulse 2s infinite;
+}
+
+/* @keyframes pulse defined above in this file, will take precedence */
+
+.about-page .section-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.about-page .section-content {
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.about-page .section-content p {
+  margin: 0 0 1.5rem 0;
+}
+
+.about-page .section-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Enhanced lists */
+.about-page .feature-list,
+.about-page .method-list,
+.about-page .suggestion-list,
+.about-page .resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0 0;
+}
+
+.about-page .feature-list li,
+.about-page .method-list li,
+.about-page .suggestion-list li,
+.about-page .resource-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-page .feature-list li::before,
+.about-page .method-list li::before,
+.about-page .suggestion-list li::before,
+.about-page .resource-list li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.6s;
+}
+
+.about-page .feature-list li:hover,
+.about-page .method-list li:hover,
+.about-page .suggestion-list li:hover,
+.about-page .resource-list li:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateX(5px);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.about-page .feature-list li:hover::before,
+.about-page .method-list li:hover::before,
+.about-page .suggestion-list li:hover::before,
+.about-page .resource-list li:hover::before {
+  left: 100%;
+}
+
+.about-page .list-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.about-page .list-content {
+  flex: 1;
+}
+
+.about-page .list-title {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: inherit;
+}
+
+.about-page .list-description {
+  opacity: 0.9;
+  font-size: 0.95rem;
+  color: inherit;
+}
+
+/* Special styling for different list types */
+.about-page .method-list li .list-icon {
+  color: #3498db;
+}
+
+.about-page .method-list li:hover .list-icon {
+  color: rgba(255,255,255,0.9);
+}
+
+.about-page .suggestion-list li .list-icon {
+  color: #e74c3c;
+}
+
+.about-page .suggestion-list li:hover .list-icon {
+  color: rgba(255,255,255,0.9);
+}
+
+.about-page .feature-list li .list-icon {
+  color: #2ecc71;
+}
+
+.about-page .feature-list li:hover .list-icon {
+  color: rgba(255,255,255,0.9);
+}
+
+.about-page .resource-list li .list-icon {
+  color: #9b59b6;
+}
+
+.about-page .resource-list li:hover .list-icon {
+  color: rgba(255,255,255,0.9);
+}
+
+/* Wisdom quote section */
+.about-page .wisdom-section {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  margin: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-page .wisdom-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.about-page .wisdom-quote {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 0 0 1rem 0;
+  position: relative;
+  line-height: 1.6;
+}
+
+.about-page .wisdom-author {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  position: relative;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .about-page {
+    padding: 1.5rem;
+  }
+
+  .about-page .page-header {
+    padding: 2.5rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .about-page .page-header h1 {
+    font-size: 2.8rem;
+  }
+
+  .about-page .content-sections {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding: 1rem;
+  }
+
+  .about-page .page-header {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-page .page-header h1 {
+    font-size: 2.4rem;
+  }
+
+  .about-page .page-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .about-page .content-section {
+    padding: 2rem;
+  }
+
+  .about-page .section-header {
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-page .section-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+
+  .about-page .section-title {
+    font-size: 1.4rem;
+  }
+
+  .about-page .feature-list li,
+  .about-page .method-list li,
+  .about-page .suggestion-list li,
+  .about-page .resource-list li {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+
+  .about-page .wisdom-section {
+    padding: 2rem;
+  }
+
+  .about-page .wisdom-quote {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .about-page .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .about-page .content-section {
+    padding: 1.5rem;
+  }
+
+  .about-page .section-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.6rem;
+  }
+
+  .about-page .section-title {
+    font-size: 1.2rem;
+  }
+
+  .about-page .section-content {
+    font-size: 1rem;
+  }
+
+  .about-page .wisdom-quote {
+    font-size: 1.1rem;
+  }
+
+  .about-page .wisdom-section {
+    padding: 1.5rem;
+  }
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .about-page .page-header::before {
+  opacity: 0.08;
+}
+
+[data-theme="dark"] .about-page .wisdom-section {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.08));
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+/* Animation for page entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Appended from main.css (Divination Page Specific Styles) --- */
+
+/* 占卜页面样式 */
+/* .divination-page is already defined above, this will override if main.css version is different */
+/* For now, appending, review for exact merge if needed */
+.divination-page {
+    text-align: center;
+    padding: 40px 20px; /* This is same as in main.css, but page-layouts.css has max-width and margin auto too */
+}
+
+.divination-buttons {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* .divination-btn base style - consider moving to buttons.css if not already there and truly generic */
+.divination-btn {
+    background: var(--accent-green);
+    color: var(--text-on-accent);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-accent-green);
+    min-width: 200px;
+}
+
+.divination-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow-accent-green-hover);
+}
+
+.divination-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* .drawing-animation and @keyframes pulse are already defined above */
+/* Appending main.css version for now, review for exact merge */
+.drawing-animation {
+    margin: 30px 0;
+    font-size: 1.3em;
+    color: var(--accent-orange);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse { /* This will override the one above if different */
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* .question-input and children are already defined above */
+/* Appending main.css version for now, review for exact merge */
+.question-input {
+    margin: 30px 0;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-secondary);
+}
+
+.question-input textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.question-input textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 5px var(--shadow-accent-blue-focus); /* Fallback was removed, this uses var now */
+}
+
+.question-input textarea:disabled {
+    background-color: var(--card-hover);
+    cursor: not-allowed;
+}
+
+/* 占卜按钮分类样式 */
+.divination-btn.quick {
+    background: var(--gradient-button-quick);
+    box-shadow: 0 4px 15px var(--shadow-accent-blue);
+}
+
+.divination-btn.coin {
+    background: var(--gradient-button-coin);
+    box-shadow: 0 4px 15px var(--shadow-accent-orange);
+}
+
+.divination-btn.yarrow {
+    background: var(--gradient-button-yarrow);
+    box-shadow: 0 4px 15px var(--shadow-accent-purple);
+}
+
+.divination-btn.quick:hover:not(:disabled) {
+    box-shadow: 0 6px 20px var(--shadow-accent-blue-hover);
+}
+
+.divination-btn.coin:hover:not(:disabled) {
+    box-shadow: 0 6px 20px var(--shadow-accent-orange-hover);
+}
+
+.divination-btn.yarrow:hover:not(:disabled) {
+    box-shadow: 0 6px 20px var(--shadow-accent-purple-hover);
+}
+
+/* 方法描述样式 */
+.method-descriptions {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.method-desc {
+    background: var(--bg-tertiary);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    color: var(--text-on-tertiary);
+    flex: 1;
+    min-width: 200px;
+    box-shadow: 0 2px 5px var(--shadow-light);
+}
+
+/* 加载动画增强 */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-color-lighter);
+    border-top: 4px solid var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 占卜结果样式 */
+.divination-result {
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px var(--shadow);
+    margin-top: 40px;
+}
+
+/* --- Appended from main.css (History Page Specific Styles) --- */
+/* 历史页面样式 */
+.history-page { /* This will override/merge with .history-page rule above */
+    padding: 20px;
+    max-width: 1200px; /* Overrides 900px */
+    margin: 0 auto;
+}
+
+.empty-history {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-primary);
+    opacity: 0.7;
+}
+
+.empty-history p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.empty-history a {
+    color: var(--accent-blue);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.empty-history a:hover {
+    text-decoration: underline;
+}
+
+.history-controls {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-sort {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.control-select {
+    padding: 8px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1em;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.control-select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.clear-btn {
+    background: var(--gradient-button-danger);
+    color: var(--text-on-danger);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow-danger-light);
+}
+
+.history-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.history-list {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px var(--shadow);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.history-list h3 {
+    margin-top: 0;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--accent-blue);
+    padding-bottom: 10px;
+}
+
+.history-item { /* This will override/merge with .history-item rule above */
+    border: 2px solid var(--border-color); /* main.css had 2px */
+    border-radius: 8px; /* main.css had 8px */
+    padding: 15px; /* main.css had 15px */
+    margin-bottom: 15px; /* main.css had 15px */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--bg-secondary);
+}
+
+.history-item:hover { /* This will override/merge with .history-item:hover rule above */
+    border-color: var(--accent-blue);
+    transform: translateY(-2px); /* main.css had -2px */
+    box-shadow: 0 4px 10px var(--shadow); /* main.css had different shadow */
+}
+
+.history-item.selected {
+    border-color: var(--accent-blue);
+    background: var(--bg-primary);
+    box-shadow: 0 0 0 2px var(--history-item-selected-shadow-light);
+}
+
+[data-theme="dark"] .history-item.selected {
+    background: var(--history-item-selected-bg-dark);
+    box-shadow: 0 0 0 2px var(--history-item-selected-shadow-dark);
+}
+
+.history-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* .hexagram-unicode defined in hexagram-styles.css, this is contextual */
+.history-item-header .hexagram-unicode {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+/* .hexagram-name defined in hexagram-styles.css, this is contextual */
+.history-item-header .hexagram-name {
+    font-weight: bold;
+    color: var(--text-secondary);
+    flex-grow: 1;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: var(--button-delete-hover-bg);
+}
+
+[data-theme="dark"] .delete-btn:hover {
+    background: var(--button-delete-hover-bg-dark);
+}
+
+.history-item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: var(--text-primary);
+    opacity: 0.7;
+}
+
+.history-item-info .changing-lines-info { /* Scoped version */
+    font-size: 0.8em;
+    color: var(--accent-orange);
+    font-weight: bold;
+}
+
+.question-preview {
+    font-style: italic;
+    color: var(--text-primary);
+    opacity: 0.8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.history-detail {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px var(--shadow);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.history-detail .divination-detail h3 { /* Scoped version */
+    margin-top: 0;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--accent-green);
+    padding-bottom: 10px;
+}
+
+.history-detail .detail-info { /* Scoped version */
+    background: var(--bg-primary);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.history-detail .detail-info p { /* Scoped version */
+    margin: 8px 0;
+    color: var(--text-primary);
+}
+
+.history-detail .changing-lines-detail { /* Scoped version */
+    background: var(--bg-primary);
+    border: 2px solid var(--accent-orange);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    color: var(--text-primary);
+}
+
+.history-detail .changing-lines-detail h4 { /* Scoped version */
+    margin-top: 0;
+    color: var(--accent-orange);
+}
+
+.history-detail .secondary-hexagram { /* Scoped version */
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.no-selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--text-primary);
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* History sidebar styles */
+.history-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.history-sidebar .stats-card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.history-sidebar .stats-card h3 {
+    margin: 0 0 15px 0;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--accent-purple);
+    padding-bottom: 8px;
+}
+
+.history-sidebar .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.history-sidebar .stat-item {
+    background: var(--gradient-history-stat-item);
+    color: var(--text-on-accent);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px var(--shadow-accent-blue-faint);
+    transition: all 0.3s ease;
+}
+
+.history-sidebar .stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px var(--shadow-accent-blue-light);
+}
+
+.history-sidebar .stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.history-sidebar .stat-label {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    line-height: 1.2;
+}
+
+.history-sidebar .controls-section {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.history-sidebar .controls-section h3 {
+    margin: 0 0 15px 0;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--accent-green);
+    padding-bottom: 8px;
+}
+
+.history-sidebar .filter-sort {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-sidebar .filter-sort label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.history-sidebar .control-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.history-sidebar .control-select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 5px var(--shadow-accent-blue-focus);
+}
+
+.history-sidebar .clear-btn {
+    width: 100%;
+    margin-top: 15px;
+    background: var(--gradient-button-danger);
+    color: var(--text-on-danger);
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.history-sidebar .clear-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-danger-light);
+}
+
+/* Animation for page entrance - already exists above */
+/* @keyframes fadeInUp { ... } */

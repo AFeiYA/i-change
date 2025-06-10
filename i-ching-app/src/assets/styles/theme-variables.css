@@ -3,36 +3,109 @@
   /* Light Theme Colors */
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #f7fafc;
+  --bg-tertiary: #f7fafc; /* Was #f7fafc, also used for #ecf0f1 fallbacks */
   --text-primary: #1a202c;
-  --text-secondary: #2d3748;
+  --text-secondary: #2d3748; /* Also used for #2c3e50 fallbacks */
   --text-muted: #718096;
+  --text-on-accent: white;
+  --text-on-gradient: white;
+  --text-on-danger: white;
+  --text-on-secondary-button: white;
+  --text-on-interactive-bg: white; /* For .nav a:hover */
   
   /* Brand Colors */
   --accent-blue: #3182ce;
   --accent-green: #38a169;
   --accent-orange: #dd6b20;
-  --accent-red: #dc3545;
+  --accent-red: #dc3545; /* Existing, can be aliased by --button-danger-bg */
   --accent-purple: #805ad5;
-  
+  --accent-teal: #007f7f; /* For .nav a:hover fallback */
+  --accent-yellow-darker: #856404; /* For .changing-lines-info text */
+  --accent-orange-darker: #f1c40f; /* For relation-btn.inverse:hover border */
+  --accent-blue-lighter: #5dade2; /* For relation-btn.complement:hover border */
+  --accent-green-lighter: #58d68d; /* For relation-btn.nuclear:hover border */
+
   /* Interactive Colors */
   --btn-primary: #3182ce;
   --btn-primary-hover: #2c5282;
-  --btn-secondary: #718096;
-  --btn-secondary-hover: #4a5568;
+  --btn-secondary: #718096; /* Can be aliased by --button-secondary-bg */
+  --btn-secondary-hover: #4a5568; /* Can be aliased by --button-secondary-hover-bg */
   --btn-success: #38a169;
-  --btn-danger: #dc3545;
+  --btn-danger: #dc3545; /* Alias for --accent-red */
+  --button-danger-hover-bg: #c0392b;
+
+  --nav-link-hover-bg: rgba(0, 127, 127, 0.5); /* Teal with opacity */
+  --theme-toggle-hover-bg: rgba(255, 255, 255, 0.1);
+  --button-secondary-bg: #95a5a6;
+  --button-secondary-hover-bg: #7f8c8d;
+  --button-delete-hover-bg: rgba(220, 53, 69, 0.2); /* accent-red @ 20% */
+  --button-close-bg-transparent: rgba(255,255,255,0.2);
+  --button-close-hover-bg-transparent: rgba(255,255,255,0.3);
   
   /* Border and Shadow */
   --border-color: #e2e8f0;
+  --border-color-light: #dee2e6; /* For unicode symbol */
+  --border-color-lighter: #ecf0f1; /* For loading spinner */
   --border-radius: 8px;
   --shadow: rgba(0, 0, 0, 0.1);
   --shadow-hover: rgba(0, 0, 0, 0.15);
-  
+  --shadow-light: rgba(0,0,0,0.1); /* For method-desc, unicode text-shadow */
+  --shadow-unicode-hover: rgba(0,0,0,0.15);
+  --shadow-relation-btn: rgba(0,0,0,0.15);
+  --shadow-relation-btn-hover: rgba(0,0,0,0.25);
+  --text-shadow-relation-btn-label: rgba(0,0,0,0.5);
+  --text-shadow-relation-btn-detail: rgba(0,0,0,0.7);
+
+  /* Accent Shadows (examples, more can be added if needed) */
+  --shadow-accent-green: rgba(46, 204, 113, 0.3);
+  --shadow-accent-green-hover: rgba(46, 204, 113, 0.4);
+  --shadow-accent-blue-focus: rgba(52, 152, 219, 0.3);
+  --shadow-accent-blue: rgba(52, 152, 219, 0.3);
+  --shadow-accent-orange: rgba(243, 156, 18, 0.3);
+  --shadow-accent-purple: rgba(142, 68, 173, 0.3);
+  --shadow-accent-blue-hover: rgba(52, 152, 219, 0.4);
+  --shadow-accent-orange-hover: rgba(243, 156, 18, 0.4);
+  --shadow-accent-purple-hover: rgba(142, 68, 173, 0.4);
+  --shadow-danger-light: rgba(220, 53, 69, 0.3);
+  --history-item-selected-shadow-light: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  --shadow-accent-blue-faint: rgba(52, 152, 219, 0.2);
+  --line-interactive-changing-shadow-start: rgba(243, 156, 18, 0.3);
+  --line-interactive-changing-shadow-end: rgba(243, 156, 18, 0.6);
+  --modal-content-shadow: rgba(0,0,0,0.3);
+  --large-line-solid-shadow: rgba(52,152,219,0.3);
+  --large-line-segment-shadow: rgba(243,156,18,0.3);
+  --hexagram-line-hover-shadow: rgba(52,152,219,0.4);
+  --hexagram-line-hover-text-shadow: rgba(255,255,255,0.8);
+  --line-solid-shadow: rgba(52,152,219,0.2);
+  --line-segment-shadow: rgba(243,156,18,0.2);
+  --interaction-hint-shadow-light: rgba(52,152,219,0.1);
+
   /* Gradients */
   --bg-gradient: linear-gradient(135deg, #2980b9, #3498db);
   --card-gradient: linear-gradient(145deg, #ffffff, #f7fafc);
-  
+  --gradient-button-quick: linear-gradient(135deg, #3498db, #2980b9);
+  --gradient-button-coin: linear-gradient(135deg, #f39c12, #e67e22);
+  --gradient-button-yarrow: linear-gradient(135deg, #8e44ad, #9b59b6);
+  --gradient-stat-item: linear-gradient(135deg, #8e44ad, #9b59b6); /* same as yarrow */
+  --gradient-unicode-symbol-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  --gradient-button-danger: linear-gradient(135deg, #e74c3c, #c0392b);
+  --gradient-history-stat-item: linear-gradient(135deg, var(--accent-blue), #2980b9);
+  --line-interactive-changing-bg: linear-gradient(135deg, #fff3cd, #ffeaa7);
+  --trigram-composition-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  --large-line-solid-bg: linear-gradient(135deg, var(--accent-blue), #1e5f8b);
+  --large-line-segment-bg: linear-gradient(135deg, var(--accent-orange), #d35400);
+  --line-solid-bg: linear-gradient(135deg, var(--accent-blue), #2980b9);
+  --line-segment-bg: linear-gradient(135deg, var(--accent-orange), #e67e22);
+  --interaction-hint-bg-light: linear-gradient(135deg, #e8f4fd, #f0f8ff);
+  --gradient-relation-inverse: linear-gradient(135deg, #e74c3c, #c0392b);
+  --gradient-relation-inverse-hover: linear-gradient(135deg, #f1c40f, #e67e22);
+  --gradient-shimmer-effect: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  --gradient-relation-complement: linear-gradient(135deg, #3498db, #2980b9);
+  --gradient-relation-complement-hover: linear-gradient(135deg, #5dade2, #3498db);
+  --gradient-relation-nuclear: linear-gradient(135deg, #2ecc71, #27ae60);
+  --gradient-relation-nuclear-hover: linear-gradient(135deg, #58d68d, #2ecc71);
+  --modal-overlay-bg: rgba(0,0,0,0.6);
+
   /* Card Colors */
   --card-bg: #ffffff;
   --card-hover: #f7fafc;
@@ -70,19 +143,109 @@
   --text-primary: #f7fafc;
   --text-secondary: #e2e8f0;
   --text-muted: #a0aec0;
+  --text-on-accent: #ffffff; /* Generally white is fine on dark accent */
+  --text-on-gradient: #ffffff; /* Generally white is fine on dark gradient */
+  --text-on-danger: #ffffff;
+  --text-on-secondary-button: #f0f0f0;
+  --text-on-interactive-bg: #e5e7eb;
+
+  /* Brand Colors */
+  --accent-blue: #60a5fa; /* Lightened for dark mode */
+  --accent-green: #34d399; /* Lightened */
+  --accent-orange: #fbbf24; /* Lightened */
+  --accent-red: #f87171; /* Lightened */
+  --accent-purple: #a78bfa; /* Lightened */
+  --accent-teal: #2dd4bf; /* Lightened teal */
+  --accent-yellow-darker: #fde047; /* Light yellow for dark bg text */
+  --accent-orange-darker: #f59e0b; /* Lighter orange for border */
+  --accent-blue-lighter: #93c5fd; /* Lighter blue for border */
+  --accent-green-lighter: #6ee7b7; /* Lighter green for border */
   
+  /* Interactive Colors */
   --btn-primary: #60a5fa;
   --btn-primary-hover: #3b82f6;
   --btn-secondary: #a0aec0;
-  --btn-secondary-hover: #e2e8f0;
-  
+  --btn-secondary-hover: #cbd5e1; /* Lightened */
+  --btn-success: #34d399;
+  --btn-danger: #f87171; /* Alias for dark --accent-red */
+  --button-danger-hover-bg: #ef4444; /* Darker red */
+
+  --nav-link-hover-bg: rgba(30, 200, 176, 0.4); /* Darker teal with opacity */
+  --theme-toggle-hover-bg: rgba(30, 39, 50, 0.4); /* Darker, less transparent */
+  --button-secondary-bg: #4a5568; /* Darker gray */
+  --button-secondary-hover-bg: #555e69; /* Slightly lighter dark gray */
+  --button-delete-hover-bg: rgba(239, 68, 68, 0.3);
+  --button-delete-hover-bg-dark: rgba(239, 68, 68, 0.3); /* same as above, specific for dark if needed */
+  --button-close-bg-transparent: rgba(45,55,72,0.3); /* Darker transparent */
+  --button-close-hover-bg-transparent: rgba(55,65,81,0.4); /* Darker transparent */
+
+  /* Border and Shadow */
   --border-color: #4a5568;
+  --border-color-light: #555e69;
+  --border-color-lighter: #3a4451;
   --shadow: rgba(0, 0, 0, 0.5);
   --shadow-hover: rgba(0, 0, 0, 0.7);
+  --shadow-light: rgba(0,0,0,0.3);
+  --shadow-unicode-hover: rgba(0,0,0,0.25);
+  --shadow-relation-btn: rgba(0,0,0,0.3);
+  --shadow-relation-btn-hover: rgba(0,0,0,0.4);
+  --text-shadow-relation-btn-label: rgba(0,0,0,0.6);
+  --text-shadow-relation-btn-detail: rgba(0,0,0,0.8);
+
+  /* Accent Shadows */
+  --shadow-accent-green: rgba(46, 204, 113, 0.2);
+  --shadow-accent-green-hover: rgba(46, 204, 113, 0.3);
+  --shadow-accent-blue-focus: rgba(96, 165, 250, 0.3);
+  --shadow-accent-blue: rgba(96, 165, 250, 0.3);
+  --shadow-accent-orange: rgba(251, 191, 36, 0.3);
+  --shadow-accent-purple: rgba(167, 139, 250, 0.3);
+  --shadow-accent-blue-hover: rgba(96, 165, 250, 0.4);
+  --shadow-accent-orange-hover: rgba(251, 191, 36, 0.4);
+  --shadow-accent-purple-hover: rgba(167, 139, 250, 0.4);
+  --shadow-danger-light: rgba(248, 113, 113, 0.3);
+  --history-item-selected-shadow-light: 0 0 0 2px rgba(96,165,250,0.2); /* For consistency */
+  --history-item-selected-bg-dark: rgba(96, 165, 250, 0.15);
+  --history-item-selected-shadow-dark: rgba(96, 165, 250, 0.3);
+  --shadow-accent-blue-faint: rgba(96, 165, 250, 0.2);
+  --line-interactive-changing-shadow-start: rgba(251, 191, 36, 0.4);
+  --line-interactive-changing-shadow-end: rgba(251, 191, 36, 0.6);
+  --modal-content-shadow: rgba(0,0,0,0.4); /* Slightly less than main shadow */
+  --large-line-solid-shadow: rgba(96,165,250,0.3);
+  --large-line-segment-shadow: rgba(251,191,36,0.3);
+  --hexagram-line-hover-shadow: rgba(96,165,250,0.4);
+  --hexagram-line-hover-text-shadow: rgba(30,30,30,0.8);
+  --line-solid-shadow: rgba(96,165,250,0.2);
+  --line-segment-shadow: rgba(251,191,36,0.2);
+  --interaction-hint-shadow-light: rgba(96,165,250,0.1); /* Renamed for clarity */
   
+  /* Gradients */
   --bg-gradient: linear-gradient(135deg, #1a365d, #2c5282);
   --card-gradient: linear-gradient(145deg, #1a202c, #2d3748);
-  
+  --gradient-button-quick: linear-gradient(135deg, #2563eb, #1d4ed8);
+  --gradient-button-coin: linear-gradient(135deg, #d97706, #b45309);
+  --gradient-button-yarrow: linear-gradient(135deg, #7e22ce, #6b21a8);
+  --gradient-stat-item: linear-gradient(135deg, #7e22ce, #6b21a8);
+  --gradient-unicode-symbol-bg: linear-gradient(135deg, var(--bg-secondary), #2a333e);
+  --gradient-button-danger: linear-gradient(135deg, #ef4444, #c0392b);
+  --gradient-history-stat-item: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
+  --line-interactive-changing-bg: linear-gradient(135deg, #42350b, #50411a); /* Dark gold/brown */
+  --trigram-composition-bg: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+  --large-line-solid-bg: linear-gradient(135deg, var(--accent-blue), #104a7a);
+  --large-line-segment-bg: linear-gradient(135deg, var(--accent-orange), #b04800);
+  --line-solid-bg: linear-gradient(135deg, var(--accent-blue), #1d5a8a);
+  --line-segment-bg: linear-gradient(135deg, var(--accent-orange), #c56b19);
+  --interaction-hint-bg-light: linear-gradient(135deg, rgba(30,41,59,0.3), rgba(51,65,85,0.3)); /* Renamed for clarity */
+  --interaction-hint-bg-dark: linear-gradient(135deg, rgba(30,41,59,0.3), rgba(51,65,85,0.3)); /* Dark version */
+  --gradient-relation-inverse: linear-gradient(135deg, #ef4444, #c0392b);
+  --gradient-relation-inverse-hover: linear-gradient(135deg, #f59e0b, #d97706);
+  --gradient-shimmer-effect: linear-gradient(45deg, transparent, rgba(55,65,81,0.1), transparent);
+  --gradient-relation-complement: linear-gradient(135deg, #2563eb, #1d4ed8);
+  --gradient-relation-complement-hover: linear-gradient(135deg, #3b82f6, #2563eb);
+  --gradient-relation-nuclear: linear-gradient(135deg, #16a34a, #15803d);
+  --gradient-relation-nuclear-hover: linear-gradient(135deg, #22c55e, #16a34a);
+  --modal-overlay-bg: rgba(0,0,0,0.7);
+
+  /* Card Colors */
   --card-bg: #1a202c;
   --card-hover: #2d3748;
   --success-bg: #065f46;
