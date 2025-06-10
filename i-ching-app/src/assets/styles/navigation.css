@@ -1,23 +1,87 @@
+/* Header wrapper styles */
+.header-wrapper {
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* Header styles */
+.header {
+  background: var(--bg-gradient);
+  color: var(--text-on-gradient);
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: 0 var(--spacing-lg);
+}
+
+/* Navigation wrapper styles */
+.nav-wrapper {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-on-gradient);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.header-theme-toggle {
+  background: var(--button-close-bg-transparent);
+  border: 2px solid var(--text-on-gradient);
+  color: var(--text-on-gradient);
+  padding: var(--spacing-sm);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  font-size: 1.2rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.header-theme-toggle:hover {
+  background: var(--button-close-hover-bg-transparent);
+  transform: scale(1.1);
+  border-color: var(--text-on-gradient);
+}
+
 /* Navigation styles */
 .nav {
-  background: var(--bg-secondary);
   padding: 0;
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px var(--shadow);
 }
 
 .nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
+  display: flex !important;
+  flex-direction: row !important; /* Ensure row direction for desktop */
   align-items: center;
+  justify-content: center; /* Center the navigation items */
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  flex-wrap: wrap; /* Allow wrapping if needed */
 }
 
 .nav li {
   position: relative;
+  flex-shrink: 0; /* Prevent items from shrinking */
 }
 
 .nav a {
@@ -38,7 +102,6 @@
 
 /* Theme toggle button */
 .theme-toggle-btn {
-  margin-left: auto;
   background: var(--btn-secondary);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
@@ -46,17 +109,55 @@
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: all var(--transition-normal);
-  font-size: var(--font-size-sm);
-  margin-right: var(--spacing-lg);
+  font-size: var(--font-size-sm);  margin-left: auto;
 }
+
+/* Remove the last-child margin rule to allow center alignment */
 
 .theme-toggle-btn:hover {
   background: var(--btn-secondary-hover);
   transform: translateY(-1px);
 }
 
+/* Desktop navigation - force horizontal layout */
+@media (min-width: 769px) {
+  .nav ul {
+    flex-direction: row !important;
+    justify-content: center !important; /* Center navigation items on desktop */
+    align-items: center !important;
+    display: flex !important;
+    flex-wrap: wrap !important; /* Allow wrapping if needed */
+  }
+  
+  .nav li {
+    width: auto !important;
+    flex-shrink: 0 !important; /* Prevent items from shrinking */
+  }
+  
+  .nav a {
+    white-space: nowrap;
+    display: block !important; /* Ensure links are visible */
+  }
+}
+
 /* Mobile navigation */
 @media (max-width: 768px) {
+  .header-content {
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    padding: 0 var(--spacing-md);
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .header-theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
   .nav ul {
     flex-direction: column;
     padding: var(--spacing-sm) 0;

@@ -10,9 +10,8 @@
   .header h1 {
     font-size: var(--font-size-2xl);
   }
-  
-  .hexagram-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    .hexagram-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
     gap: var(--spacing-sm);
   }
   
@@ -73,7 +72,7 @@
   }
   
   .hexagram-grid {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets */
   }
   
   .grid-3, .grid-4 {
