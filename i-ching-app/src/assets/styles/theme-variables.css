@@ -110,8 +110,13 @@
   --card-bg: #ffffff;
   --card-hover: #f7fafc;
   --success-bg: #f0fff4;
-  --warning-bg: #fffbeb;
-  --error-bg: #fed7d7;
+  --warning-bg: #fffbeb;  --error-bg: #fed7d7;
+  /* Navigation Menu Colors - Enhanced for better visibility */
+  --nav-menu-bg: #f8fafc; /* Light gray background for better contrast */
+  --nav-menu-item-hover-bg: #e2e8f0; /* Slightly darker for better contrast */
+  --nav-menu-border: var(--border-color);
+  --nav-menu-shadow: rgba(0, 0, 0, 0.15); /* Darker shadow for better visibility */
+  --nav-menu-backdrop: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
   
   /* Spacing */
   --spacing-xs: 4px;
@@ -251,6 +256,12 @@
   --success-bg: #065f46;
   --warning-bg: #92400e;
   --error-bg: #991b1b;
+  /* Navigation Menu Colors */
+  --nav-menu-bg: #1e2732; /* Darker background for dark theme */
+  --nav-menu-item-hover-bg: #2d3748; /* Lighter hover for contrast */
+  --nav-menu-border: var(--border-color);
+  --nav-menu-shadow: var(--shadow);
+  --nav-menu-backdrop: var(--modal-overlay-bg);
 }
 
 /* Smooth theme transition */
