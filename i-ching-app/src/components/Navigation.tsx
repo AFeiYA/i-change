@@ -19,6 +19,21 @@ const Navigation: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleMenuItemClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    // Add click animation class
+    const target = event.currentTarget;
+    target.style.transform = 'translateX(-12px) scale(0.95)';
+    
+    // Reset animation after a short delay, then close menu
+    setTimeout(() => {
+      target.style.transform = '';
+      // Close menu after animation
+      setTimeout(() => {
+        setIsMenuOpen(false);
+      }, 150);
+    }, 100);
+  };
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -53,27 +68,27 @@ const Navigation: React.FC = () => {
         <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
           <ul className={isMenuOpen ? 'nav-menu open' : 'nav-menu'}>
             <li>
-              <Link to="/">
+              <Link to="/" onClick={handleMenuItemClick}>
                 <span>🎋 占卜</span>
               </Link>
             </li>
             <li>
-              <Link to="/classics">
+              <Link to="/classics" onClick={handleMenuItemClick}>
                 <span>📚 经典</span>
               </Link>
             </li>
             <li>
-              <Link to="/history">
+              <Link to="/history" onClick={handleMenuItemClick}>
                 <span>📜 历史</span>
               </Link>
             </li>
             <li>
-              <Link to="/about">
+              <Link to="/about" onClick={handleMenuItemClick}>
                 <span>📖 传记</span>
               </Link>
             </li>
             <li>
-              <Link to="/profile">
+              <Link to="/profile" onClick={handleMenuItemClick}>
                 <span>👤 我的</span>
               </Link>
             </li>
