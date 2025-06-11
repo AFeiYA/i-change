@@ -202,11 +202,11 @@
 
   .hamburger-menu.open span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
-  }.nav-wrapper {
+  }  .nav-wrapper {
     position: fixed;
     top: 0;
     right: -100%; /* Start off-screen */
-    width: 70%; /* Adjust width as needed */
+    width: 56%; /* Reduced width by 20% (was 70%) */
     max-width: 300px; /* Add a max-width for larger mobile screens */
     height: 100vh;
     background: #2d3748; /* Dark background for better contrast with white text */
