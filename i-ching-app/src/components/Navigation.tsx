@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Navigation: React.FC = () => {
   const { theme, setTheme, currentTheme } = useTheme();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleTheme = () => {
     const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -15,87 +14,30 @@ const Navigation: React.FC = () => {
     return currentTheme === 'light' ? '🌙' : '☀️';
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleMenuItemClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    // Add click animation class
-    const target = event.currentTarget;
-    target.style.transform = 'translateX(-12px) scale(0.95)';
-    
-    // Reset animation after a short delay, then close menu
-    setTimeout(() => {
-      target.style.transform = '';
-      // Close menu after animation
-      setTimeout(() => {
-        setIsMenuOpen(false);
-      }, 150);
-    }, 100);
-  };
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isMenuOpen]);
-
   return (
-    <div className="header-wrapper">
-      <div className="header">
-        <div className="header-content">
-          <button 
-            className="theme-toggle-btn header-theme-toggle"
-            onClick={toggleTheme}
-            title={`切换到${currentTheme === 'light' ? '深色' : '浅色'}主题`}
-          >
-            {getThemeIcon()}
-          </button>
-          <h1>易经 I Ching</h1>
-          <button className={`hamburger-menu ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu} aria-label="Toggle menu" aria-expanded={isMenuOpen}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-      <div className={`nav-wrapper ${isMenuOpen ? 'open' : ''}`}>
-        <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
-          <ul className={isMenuOpen ? 'nav-menu open' : 'nav-menu'}>
-            <li>
-              <Link to="/" onClick={handleMenuItemClick}>
-                <span>🎋 占卜</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/classics" onClick={handleMenuItemClick}>
-                <span>📚 经典</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/history" onClick={handleMenuItemClick}>
-                <span>📜 历史</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" onClick={handleMenuItemClick}>
-                <span>📖 传记</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/profile" onClick={handleMenuItemClick}>
-                <span>👤 我的</span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      {isMenuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
+    <div className="header">
+      <h1>易经 I Ching</h1>      <nav className="nav">
+        <Link to="/">
+          <span>🎋 占卜</span>
+        </Link>        <Link to="/classics">
+          <span>📚 经典</span>
+        </Link>        <Link to="/history">
+          <span>📜 历史</span>
+        </Link>
+        <Link to="/about">
+          <span>📖 传记</span>
+        </Link>
+        <Link to="/profile">
+          <span>👤 我的</span>
+        </Link>
+        <button
+          className="theme-toggle-btn"
+          onClick={toggleTheme}
+          title={`切换到${currentTheme === 'light' ? '深色' : '浅色'}主题`}
+        >
+          {getThemeIcon()}
+        </button>
+      </nav>
     </div>
   );
 };

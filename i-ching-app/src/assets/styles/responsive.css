@@ -11,61 +11,17 @@
     font-size: var(--font-size-2xl);
   }
 
-  /* Force single column layout for hexagram grid on very small screens */
-  .container .hexagram-grid,
-  .page-container .hexagram-grid,
-  .classics-page .hexagram-grid {
-    grid-template-columns: 1fr !important; /* Force 1 column with !important */
-    gap: var(--spacing-md);
-    max-width: 400px; /* Limit maximum width for better readability */
-    margin: 0 auto; /* Center the grid */
+  .hexagram-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--spacing-sm);
   }
   
   .hexagram-card {
     padding: var(--spacing-sm);
   }
   
-  .hexagram-card .detail {
-    padding: var(--spacing-lg);
-    min-height: auto;
-  }
-  
-  .hexagram-card h3 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .hexagram-card h4 {
-    font-size: var(--font-size-md);
-    margin-bottom: var(--spacing-xs);
-  }
-  
-  .hexagram-card p {
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--spacing-sm);
-  }
-  
   .hexagram-symbol {
     font-size: var(--font-size-2xl) !important;
-  }
-  
-  .unicode-symbol {
-    font-size: 3rem !important;
-    margin: var(--spacing-md) 0;
-  }
-  
-  .hexagram-preview {
-    margin-top: var(--spacing-md);
-  }
-  
-  .line-small {
-    margin: 2px 0;
-    font-size: var(--font-size-sm);
-  }
-  
-  .trigram-info {
-    font-size: var(--font-size-xs);
-    margin-top: var(--spacing-sm);
   }
   
   .hexagram-name {
@@ -110,33 +66,14 @@
   }
 }
 
-/* Small Mobile */
-@media (min-width: 481px) and (max-width: 600px) {
-  .container {
-    width: 92%;
-  }
-  
-  /* Force 2 columns for small mobile */
-  .container .hexagram-grid,
-  .page-container .hexagram-grid,
-  .classics-page .hexagram-grid {
-    grid-template-columns: repeat(2, 1fr) !important; /* 2 columns for larger mobile */
-    gap: var(--spacing-md);
-  }
-}
-
 /* Tablet */
-@media (min-width: 601px) and (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .container {
     width: 92%;
   }
   
-  /* Force 2 columns for tablets instead of 3 for better readability */
-  .container .hexagram-grid,
-  .page-container .hexagram-grid,
-  .classics-page .hexagram-grid {
-    grid-template-columns: repeat(2, 1fr) !important; /* 2 columns for tablets */
-    gap: var(--spacing-lg);
+  .hexagram-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   }
   
   .grid-3, .grid-4 {
@@ -173,27 +110,8 @@
     max-width: 1200px;
   }
   
-  /* Keep hexagram grid at 4-5 columns max for better readability */
-  .container .hexagram-grid,
-  .page-container .hexagram-grid,
-  .classics-page .hexagram-grid {
-    grid-template-columns: repeat(4, 1fr) !important; /* 4 columns for large desktop */
-    gap: var(--spacing-xl);
-  }
-}
-
-/* Extra Large Desktop */
-@media (min-width: 1400px) {
-  .container {
-    max-width: 1400px;
-  }
-  
-  /* Only on very large screens, allow 5 columns */
-  .container .hexagram-grid,
-  .page-container .hexagram-grid,
-  .classics-page .hexagram-grid {
-    grid-template-columns: repeat(5, 1fr) !important; /* 5 columns for extra large screens */
-    gap: var(--spacing-xl);
+  .hexagram-grid {
+    grid-template-columns: repeat(8, 1fr);
   }
 }
 

@@ -173,10 +173,10 @@
   box-shadow: 0 8px 25px rgba(142, 68, 173, 0.4);
 }
 
-/* Hexagram grid buttons - Higher specificity */
+/* Hexagram grid buttons */
 .hexagram-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important; /* Fixed 4 columns per row */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: var(--spacing-md);
   margin: var(--spacing-lg) 0;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutPage: React.FC = () => {
     return (
-        <div className="page-container about-page">
+        <div className="about-page">
             {/* 背景装饰 */}
             <div className="background-decoration">
                 {Array.from({ length: 12 }, (_, i) => (

@@ -108,13 +108,13 @@ const DivinationPage: React.FC = () => {
             });
             setIsDrawing(false);
         }, 3000);
-    };    return (
+    };
+
+    return (
         <div className="container">
-            <div className="page-container divination-page">
-                <div className="page-header">
-                    <h1>🎋 易经占卜</h1>
-                    <p>诚心求卦，静心思考你想要了解的问题，然后选择占卜方式：</p>
-                </div>
+            <div className="divination-page">
+                <h1>🎋 易经占卜</h1>
+                <p>诚心求卦，静心思考你想要了解的问题，然后选择占卜方式：</p>
                                 {isDrawing && (
                     <div className="drawing-animation">
                         <p>🔮 天机运转中，请稍候...</p>

@@ -24,10 +24,12 @@
   --accent-orange-darker: #f1c40f; /* For relation-btn.inverse:hover border */
   --accent-blue-lighter: #5dade2; /* For relation-btn.complement:hover border */
   --accent-green-lighter: #58d68d; /* For relation-btn.nuclear:hover border */
+  --primary-color: var(--accent-blue);
 
   /* Interactive Colors */
   --btn-primary: #3182ce;
   --btn-primary-hover: #2c5282;
+  --primary-hover: var(--btn-primary-hover);
   --btn-secondary: #718096; /* Can be aliased by --button-secondary-bg */
   --btn-secondary-hover: #4a5568; /* Can be aliased by --button-secondary-hover-bg */
   --btn-success: #38a169;
@@ -110,13 +112,8 @@
   --card-bg: #ffffff;
   --card-hover: #f7fafc;
   --success-bg: #f0fff4;
-  --warning-bg: #fffbeb;  --error-bg: #fed7d7;  /* Navigation Menu Colors - Enhanced for better visibility */
-  --nav-menu-bg: #f8fafc; /* Light gray background for better contrast */
-  --nav-menu-item-hover-bg: #e2e8f0; /* Slightly darker for better contrast */
-  --nav-menu-item-hover-text: #1a202c; /* Dark text for light background hover */
-  --nav-menu-border: var(--border-color);
-  --nav-menu-shadow: rgba(0, 0, 0, 0.15); /* Darker shadow for better visibility */
-  --nav-menu-backdrop: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+  --warning-bg: #fffbeb;
+  --error-bg: #fed7d7;
   
   /* Spacing */
   --spacing-xs: 4px;
@@ -156,6 +153,7 @@
 
   /* Brand Colors */
   --accent-blue: #60a5fa; /* Lightened for dark mode */
+  --primary-color: var(--accent-blue); /* Added for dark theme */
   --accent-green: #34d399; /* Lightened */
   --accent-orange: #fbbf24; /* Lightened */
   --accent-red: #f87171; /* Lightened */
@@ -169,8 +167,9 @@
   /* Interactive Colors */
   --btn-primary: #60a5fa;
   --btn-primary-hover: #3b82f6;
+  --primary-hover: var(--btn-primary-hover); /* Added for dark theme */
   --btn-secondary: #a0aec0;
-  --btn-secondary-hover: #cbd5e1; /* Lightened */
+  --btn-secondary-hover: #828f9e; /* Darkened for better contrast with light text */
   --btn-success: #34d399;
   --btn-danger: #f87171; /* Alias for dark --accent-red */
   --button-danger-hover-bg: #ef4444; /* Darker red */
@@ -255,13 +254,7 @@
   --card-hover: #2d3748;
   --success-bg: #065f46;
   --warning-bg: #92400e;
-  --error-bg: #991b1b;  /* Navigation Menu Colors */
-  --nav-menu-bg: #1e2732; /* Darker background for dark theme */
-  --nav-menu-item-hover-bg: #2d3748; /* Lighter hover for contrast */
-  --nav-menu-item-hover-text: #f7fafc; /* Light text for dark background hover */
-  --nav-menu-border: var(--border-color);
-  --nav-menu-shadow: var(--shadow);
-  --nav-menu-backdrop: var(--modal-overlay-bg);
+  --error-bg: #991b1b;
 }
 
 /* Smooth theme transition */
