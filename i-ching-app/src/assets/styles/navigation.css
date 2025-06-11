@@ -146,34 +146,118 @@
     flex-direction: row;
     gap: var(--spacing-sm);
     padding: 0 var(--spacing-md);
+    align-items: center;
+    width: 100%; /* Ensure .header-content takes full width */
+    box-sizing: border-box; /* So padding doesn't add to width */
   }
-  
+
   .header h1 {
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Adjust title size for smaller screens */
+    margin: 0 auto; /* Center title in the available space */
+    text-align: center; /* Ensure text within h1 is centered if h1 has space */
   }
-  
+
   .header-theme-toggle {
     width: 36px;
     height: 36px;
     font-size: 1rem;
+    order: -1; /* Move theme toggle to the left */
+    flex-shrink: 0; /* Prevent shrinking */
   }
-  
+
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; /* Ensure hamburger is above other elements */
+    position: relative; /* Needed for z-index */
+    margin-left: auto; /* Push menu to the right */
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+
+  .hamburger-menu span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-on-gradient);
+    border-radius: 2px;
+    transition: all 0.3s linear;
+  }
+
+  .hamburger-menu.open span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+
+  .hamburger-menu.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  .nav-wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 70%; /* Adjust width as needed */
+    max-width: 300px; /* Add a max-width for larger mobile screens */
+    height: 100vh;
+    background: var(--bg-secondary);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    box-shadow: -3px 0 15px rgba(0,0,0,0.2); /* Enhanced shadow */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    display: flex; /* For positioning theme toggle at bottom */
+    flex-direction: column; /* For positioning theme toggle at bottom */
+  }
+
+  .nav-wrapper.open {
+    right: 0; /* Slide in */
+  }
+
+  .nav {
+    padding-top: calc(var(--spacing-lg) + 40px); /* More space for close button + top padding */
+    padding-bottom: var(--spacing-lg); /* Bottom padding for the nav itself */
+    flex-grow: 1; /* Allows nav items to take available space */
+  }
+
   .nav ul {
     flex-direction: column;
-    padding: var(--spacing-sm) 0;
+    align-items: flex-end; /* Align items to the right */
+    padding: 0 var(--spacing-lg); /* Horizontal padding for the list */
   }
-  
+
   .nav li {
     width: 100%;
+    margin-bottom: var(--spacing-sm); /* Slightly reduced margin */
   }
-  
+
   .nav a {
-    text-align: center;
-    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    padding: var(--spacing-md) var(--spacing-lg); /* Increased padding */
+    border-bottom: none; /* Remove bottom border for side menu */
+    color: var(--text-primary);
+    display: flex; /* For icon and text alignment */
+    align-items: center;
+    gap: var(--spacing-md); /* Space between icon and text */
+    border-radius: var(--border-radius-lg); /* More rounded corners */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Smooth transitions */
   }
-  
-  .theme-toggle-btn {
-    margin: var(--spacing-sm) auto 0;
-    width: fit-content;
+
+  .nav a span:last-child { /* Target the text part of the link if icons are spans too */
+    flex-grow: 1; /* Make text take remaining space if needed */
+  }
+
+  .nav a:hover,
+  .nav a.active {
+    background: var(--bg-tertiary-alpha); /* Use a slightly transparent tertiary for hover */
+    color: var(--accent-blue);
+    transform: translateX(5px); /* Slight indent on hover/active */
   }
 }

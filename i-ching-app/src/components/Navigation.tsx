@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Navigation: React.FC = () => {
   const { theme, setTheme, currentTheme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleTheme = () => {
     const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -12,7 +13,24 @@ const Navigation: React.FC = () => {
 
   const getThemeIcon = () => {
     return currentTheme === 'light' ? '🌙' : '☀️';
-  };  return (
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
+
+  return (
     <div className="header-wrapper">
       <div className="header">
         <div className="header-content">
@@ -24,11 +42,16 @@ const Navigation: React.FC = () => {
             {getThemeIcon()}
           </button>
           <h1>易经 I Ching</h1>
+          <button className={`hamburger-menu ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu} aria-label="Toggle menu" aria-expanded={isMenuOpen}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
-      <div className="nav-wrapper">
-        <nav className="nav">
-          <ul>
+      <div className={`nav-wrapper ${isMenuOpen ? 'open' : ''}`}>
+        <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
+          <ul className={isMenuOpen ? 'nav-menu open' : 'nav-menu'}>
             <li>
               <Link to="/">
                 <span>🎋 占卜</span>
@@ -57,6 +80,7 @@ const Navigation: React.FC = () => {
           </ul>
         </nav>
       </div>
+      {isMenuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
     </div>
   );
 };
