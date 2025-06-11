@@ -1,5 +1,64 @@
 /* Page layouts and specific page styles */
 
+/* Universal scrollbar hiding for all containers */
+.container,
+.divination-page,
+.about-page,
+.classics-page,
+.history-page,
+.profile-page,
+.hexagram-detail-page {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.container::-webkit-scrollbar,
+.divination-page::-webkit-scrollbar,
+.about-page::-webkit-scrollbar,
+.classics-page::-webkit-scrollbar,
+.history-page::-webkit-scrollbar,
+.profile-page::-webkit-scrollbar,
+.hexagram-detail-page::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Universal scrollbar hiding for all elements that might scroll */
+textarea,
+.hexagram-grid,
+.history-list,
+.line-detail-content,
+.modal-content,
+.content-sections,
+.divination-result {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+textarea::-webkit-scrollbar,
+.hexagram-grid::-webkit-scrollbar,
+.history-list::-webkit-scrollbar,
+.line-detail-content::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar,
+.content-sections::-webkit-scrollbar,
+.divination-result::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Ensure smooth scrolling for all containers */
+.container {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Ensure smooth scrolling behavior */
+textarea,
+.hexagram-grid,
+.history-list,
+.line-detail-content,
+.modal-content {
+  scroll-behavior: smooth;
+}
+
 /* Divination page */
 .divination-page {
   text-align: center;

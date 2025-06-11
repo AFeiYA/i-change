@@ -3,6 +3,16 @@
   box-sizing: border-box;
 }
 
+/* Hide scrollbars while maintaining scroll functionality */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 body {
   font-family: var(--font-family);
   background-color: var(--bg-primary);
@@ -10,6 +20,20 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  /* Ensure body scrolling is smooth */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Ensure html element also hides scrollbars */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 h1, h2, h3, h4, h5, h6 {

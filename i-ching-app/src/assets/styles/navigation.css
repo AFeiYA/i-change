@@ -29,6 +29,32 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+/* Desktop navigation wrapper */
+@media (min-width: 769px) {
+  .nav-wrapper {
+    position: static; /* Reset position for desktop */
+    width: 100%; /* Full width for desktop */
+    height: auto; /* Auto height for desktop */
+    background: var(--bg-secondary); /* Use theme background */
+    box-shadow: none; /* Remove shadow for desktop */
+    overflow-y: visible; /* Reset overflow for desktop */
+    display: block; /* Reset display for desktop */
+    flex-direction: row; /* Reset flex direction for desktop */
+    backdrop-filter: none; /* Remove backdrop filter for desktop */
+    border-left: none; /* Remove left border for desktop */
+    transition: none; /* Remove transition for desktop */
+    z-index: auto; /* Reset z-index for desktop */
+  }
+  
+  .hamburger-menu {
+    display: none; /* Hide hamburger menu on desktop */
+  }
+}
+
+.nav-wrapper::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 .header h1 {
   margin: 0;
   font-size: 2.5rem;
@@ -218,6 +244,13 @@
     flex-direction: column; /* For positioning theme toggle at bottom */
     backdrop-filter: blur(10px); /* Modern glass effect */
     border-left: 1px solid rgba(255,255,255,0.1);
+    /* Hide scrollbar for nav wrapper */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+
+  .nav-wrapper::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
 
   .nav-wrapper.open {
