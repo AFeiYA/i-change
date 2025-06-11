@@ -232,8 +232,8 @@
     position: fixed;
     top: 0;
     right: -100%; /* Start off-screen */
-    width: 56%; /* Reduced width by 20% (was 70%) */
-    max-width: 300px; /* Add a max-width for larger mobile screens */
+    width: 42%; /* Further reduced width for narrower menu */
+    max-width: 280px; /* Reduced max-width for better mobile experience */
     height: 100vh;
     background: #2d3748; /* Dark background for better contrast with white text */
     transition: right 0.3s ease-in-out, background-color var(--transition-normal);
@@ -353,11 +353,10 @@
     font-weight: 500;
     flex-shrink: 0; /* Prevent icon from shrinking */
   }
-  
-  .nav a:hover,
+    .nav a:hover,
   .nav a.active {
     background: var(--nav-menu-item-hover-bg);
-    color: var(--accent-blue);
+    color: var(--nav-menu-item-hover-text); /* Use theme-specific hover text color */
     transform: translateX(-8px) scale(1.02); /* Move left and slightly scale up */
     border-color: var(--accent-blue);
     box-shadow: 0 4px 12px var(--shadow-accent-blue);
