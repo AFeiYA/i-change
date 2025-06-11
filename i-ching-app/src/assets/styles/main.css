@@ -8,6 +8,7 @@
 @import './profile.css';
 @import './responsive.css';
 @import './hexagram-detail.css'; /* Retained for safety, review in step 3/4 */
+@import './page-animations.css'; /* Page entrance animations */
 
 /* Core global styles (body, h1-h3, a, .container) were moved to base-styles.css */
 
