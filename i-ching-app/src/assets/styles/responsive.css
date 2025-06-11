@@ -173,8 +173,27 @@
     max-width: 1200px;
   }
   
-  .hexagram-grid {
-    grid-template-columns: repeat(8, 1fr);
+  /* Keep hexagram grid at 4-5 columns max for better readability */
+  .container .hexagram-grid,
+  .page-container .hexagram-grid,
+  .classics-page .hexagram-grid {
+    grid-template-columns: repeat(4, 1fr) !important; /* 4 columns for large desktop */
+    gap: var(--spacing-xl);
+  }
+}
+
+/* Extra Large Desktop */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  /* Only on very large screens, allow 5 columns */
+  .container .hexagram-grid,
+  .page-container .hexagram-grid,
+  .classics-page .hexagram-grid {
+    grid-template-columns: repeat(5, 1fr) !important; /* 5 columns for extra large screens */
+    gap: var(--spacing-xl);
   }
 }
 

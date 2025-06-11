@@ -19,6 +19,7 @@ body {
   color: var(--text-primary);
   margin: 0;
   padding: 0;
+  padding-top: 200px; /* Increased space for fixed header - desktop default */
   line-height: 1.6;
   /* Ensure body scrolling is smooth */
   overflow-x: hidden;
@@ -160,4 +161,24 @@ a:hover { /* Note: This is a simpler duplicate from main.css. Review needed. */
     margin: auto;
     overflow: hidden;
     padding: 20px 0;
+}
+
+/* Responsive adjustments for fixed header */
+/* Desktop - larger top padding for horizontal navigation */
+@media (min-width: 769px) {
+  body {
+    padding-top: 220px; /* Extra space for desktop horizontal navigation */
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 130px; /* Increased top padding for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 120px; /* Increased for very small screens */
+  }
 }
