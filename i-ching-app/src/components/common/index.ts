@@ -5,6 +5,7 @@ export { default as WisdomQuote } from './WisdomQuote';
 export { default as BackgroundDecoration } from './BackgroundDecoration';
 export { default as StatCard } from './StatCard';
 export { default as Button } from './Button';
+export { default as KeyboardShortcutHelp } from './KeyboardShortcutHelp';
 export { default as List } from './List';
 
 // Type exports
@@ -14,4 +15,5 @@ export type { WisdomQuoteProps } from './WisdomQuote';
 export type { BackgroundDecorationType } from './BackgroundDecoration';
 export type { StatCardProps } from './StatCard';
 export type { ButtonProps, ButtonVariant, ButtonSize } from './Button';
+export type { KeyboardShortcutHelpProps } from './KeyboardShortcutHelp';
 export type { ListProps, ListItem } from './List';

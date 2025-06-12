@@ -5,7 +5,8 @@ import {
     PageHeader, 
     StatCard,
     Button,
-    BackgroundDecoration 
+    BackgroundDecoration,
+    ContentSection
 } from '../components/common';
 import { 
     getUserStats, 
@@ -228,39 +229,43 @@ const ProfilePage: React.FC = () => {
 
     return (
         <div className="container">
+            <BackgroundDecoration symbols={['🔮', '📊', '🏆', '📅', '⚙️', '💎']} />
             <div className="profile-page">
-                <div className="profile-header">
-                    <h1>🔮 我的易经</h1>
-                    <p className="profile-subtitle">探索智慧之路，记录心灵感悟</p>
-                    <div className="profile-insight">
-                        <span className="insight-text">{getInsightText()}</span>
-                    </div>
+                <PageHeader 
+                    icon="🔮"
+                    title="我的易经"
+                    subtitle="探索智慧之路，记录心灵感悟"
+                />
+                
+                <div className="profile-insight">
+                    <span className="insight-text">{getInsightText()}</span>
                 </div>
                 
                 <div className="profile-sections">
-                    {/* 统计信息部分 */}
-                    <section className="stats-section">
-                        <h2>📊 占卜统计</h2>
+                    <ContentSection icon="📊" title="占卜统计">
                         <div className="stats-grid">
-                            <div className="stat-card main-stat">
-                                <div className="stat-icon">🎯</div>
-                                <div className="stat-number">{stats.totalDivinations}</div>
-                                <div className="stat-label">总占卜次数</div>
-                            </div>
+                            <StatCard
+                                icon="🎯"
+                                value={stats.totalDivinations}
+                                label="总占卜次数"
+                                className="main-stat"
+                            />
                             
                             {Object.entries(stats.methodCounts).length > 0 && (
-                                <div className="stat-card secondary-stat">
-                                    <div className="stat-icon">📈</div>
-                                    <div className="stat-number">{Object.keys(stats.methodCounts).length}</div>
-                                    <div className="stat-label">使用方法数</div>
-                                </div>
+                                <StatCard
+                                    icon="📈"
+                                    value={Object.keys(stats.methodCounts).length}
+                                    label="使用方法数"
+                                    className="secondary-stat"
+                                />
                             )}
 
-                            <div className="stat-card secondary-stat">
-                                <div className="stat-icon">🔥</div>
-                                <div className="stat-number">{achievements.filter(a => a.unlocked).length}</div>
-                                <div className="stat-label">已解锁成就</div>
-                            </div>
+                            <StatCard
+                                icon="🔥"
+                                value={achievements.filter(a => a.unlocked).length}
+                                label="已解锁成就"
+                                className="secondary-stat"
+                            />
                             
                             {Object.entries(stats.methodCounts).length > 0 && (
                                 <div className="method-stats">
@@ -293,11 +298,9 @@ const ProfilePage: React.FC = () => {
                                 </div>
                             )}
                         </div>
-                    </section>
+                    </ContentSection>
 
-                    {/* 成就系统 */}
-                    <section className="achievements-section">
-                        <h2>🏆 成就徽章</h2>
+                    <ContentSection icon="🏆" title="成就徽章">
                         <div className="achievements-grid">
                             {achievements.map(achievement => (
                                 <div 
@@ -325,11 +328,9 @@ const ProfilePage: React.FC = () => {
                                 </div>
                             ))}
                         </div>
-                    </section>
+                    </ContentSection>
 
-                    {/* 最近活动 */}
-                    <section className="activity-section">
-                        <h2>📅 最近活动</h2>
+                    <ContentSection icon="📅" title="最近活动">
                         <div className="activity-controls">
                             <select 
                                 value={selectedTimePeriod} 
@@ -371,11 +372,9 @@ const ProfilePage: React.FC = () => {
                                 </div>
                             )}
                         </div>
-                    </section>
+                    </ContentSection>
 
-                    {/* 用户偏好设置 */}
-                    <section className="preferences-section">
-                        <h2>⚙️ 偏好设置</h2>
+                    <ContentSection icon="⚙️" title="偏好设置">
                         <div className="preference-item">
                             <label htmlFor="theme">主题：</label>
                             <select 
@@ -425,22 +424,23 @@ const ProfilePage: React.FC = () => {
                                 启用音效
                             </label>
                         </div>
-                    </section>
+                    </ContentSection>
 
-                    {/* 数据管理 */}
-                    <section className="data-section">
-                        <h2>💾 数据管理</h2>
+                    <ContentSection icon="💾" title="数据管理">
                         <div className="data-actions">
-                            <button 
+                            <Button 
                                 onClick={handleExportData}
                                 disabled={isExporting}
+                                variant="primary"
                                 className="export-btn"
                             >
                                 {isExporting ? '导出中...' : '📤 导出数据'}
-                            </button>
+                            </Button>
                             
                             <label className="import-btn">
-                                📥 导入数据
+                                <Button variant="secondary">
+                                    📥 导入数据
+                                </Button>
                                 <input 
                                     type="file" 
                                     accept=".json"
@@ -452,7 +452,7 @@ const ProfilePage: React.FC = () => {
                         <p className="data-info">
                             导出的数据包含您的占卜历史、偏好设置等信息，可用于备份或在其他设备上恢复。
                         </p>
-                    </section>
+                    </ContentSection>
                 </div>
             </div>
         </div>
