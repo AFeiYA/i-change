@@ -12,8 +12,8 @@
   --text-on-danger: white;
   --text-on-secondary-button: white;
   --text-on-interactive-bg: white; /* For .nav a:hover */
-  
-  /* Brand Colors */
+    /* Brand Colors */
+  --primary-color: #3182ce; /* Primary brand color, alias for accent-blue */
   --accent-blue: #3182ce;
   --accent-green: #38a169;
   --accent-orange: #dd6b20;
