@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getDivinationHistory, clearDivinationHistory, deleteDivination } from '../services/dataService';
 import { StoredDivination } from '../services/dataService';
-import HexagramDisplay from '../components/HexagramDisplay';
 
 const HistoryPage: React.FC = () => {
     const [history, setHistory] = useState<StoredDivination[]>([]);
-    const [selectedDivination, setSelectedDivination] = useState<StoredDivination | null>(null);
     const [sortBy, setSortBy] = useState<'date' | 'method'>('date');
     const [filterMethod, setFilterMethod] = useState<string>('all');
 
@@ -16,13 +14,10 @@ const HistoryPage: React.FC = () => {
     const loadHistory = () => {
         const historyData = getDivinationHistory();
         setHistory(historyData);
-    };
-
-    const handleClearHistory = () => {
+    };    const handleClearHistory = () => {
         if (window.confirm('确定要清空所有占卜历史吗？此操作不可恢复。')) {
             clearDivinationHistory();
             setHistory([]);
-            setSelectedDivination(null);
         }
     };
 
@@ -30,9 +25,6 @@ const HistoryPage: React.FC = () => {
         if (window.confirm('确定要删除这条占卜记录吗？')) {
             deleteDivination(id);
             loadHistory();
-            if (selectedDivination?.id === id) {
-                setSelectedDivination(null);
-            }
         }
     };
 
@@ -103,12 +95,10 @@ const HistoryPage: React.FC = () => {
                                 <h3>历史记录</h3>
                                 <span className="record-count">{filteredHistory.length} 条记录</span>
                             </div>
-                            <div className="history-items">
-                                {sortedHistory.map((divination) => (
+                            <div className="history-items">                                {sortedHistory.map((divination) => (
                                     <div 
                                         key={divination.id}
-                                        className={`history-item ${selectedDivination?.id === divination.id ? 'selected' : ''}`}
-                                        onClick={() => setSelectedDivination(divination)}
+                                        className="history-item"
                                     >
                                         <div className="item-main">
                                             <div className="hexagram-info">
@@ -212,83 +202,12 @@ const HistoryPage: React.FC = () => {
                                         </select>
                                     </div>
                                 </div>
-                                
-                                <button 
+                                  <button 
                                     onClick={handleClearHistory}
                                     className="danger-button"
                                 >
                                     🗑️ 清空历史
                                 </button>
-                            </div>
-
-                            {/* 详情区域 */}
-                            <div className="history-detail">                            {selectedDivination ? (
-                                <div className="detail-content">
-                                    <div className="detail-header">
-                                        <h3>占卜详情</h3>
-                                        <div className="detail-badge">
-                                            {getMethodName(selectedDivination.method)}
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="detail-info">
-                                        <div className="info-grid">
-                                            <div className="info-item">
-                                                <span className="info-icon">📅</span>
-                                                <div className="info-content">
-                                                    <span className="info-label">占卜时间</span>
-                                                    <span className="info-value">{formatDate(selectedDivination.date)}</span>
-                                                </div>
-                                            </div>
-                                            <div className="info-item">
-                                                <span className="info-icon">🔮</span>
-                                                <div className="info-content">
-                                                    <span className="info-label">占卜方法</span>
-                                                    <span className="info-value">{getMethodName(selectedDivination.method)}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="question-section">
-                                            <span className="info-icon">❓</span>
-                                            <div className="info-content">
-                                                <span className="info-label">占卜问题</span>
-                                                <div className="question-full">{selectedDivination.question}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="hexagram-section">
-                                        <HexagramDisplay hexagram={selectedDivination.hexagram} />
-                                    </div>
-                                    
-                                    {selectedDivination.changingLines && selectedDivination.changingLines.length > 0 && (
-                                        <div className="changing-lines-section">
-                                            <h4>🔄 变爻信息</h4>
-                                            <div className="changing-info">
-                                                <p>第 <strong>{selectedDivination.changingLines.join(', ')}</strong> 爻为变爻</p>
-                                                <div className="changing-note">
-                                                    变爻代表事态的转折点，需要特别关注这些爻的解释。
-                                                </div>
-                                            </div>
-                                            {selectedDivination.secondaryHexagram && (
-                                                <div className="secondary-hexagram">
-                                                    <h5>变化后的卦象</h5>
-                                                    <HexagramDisplay hexagram={selectedDivination.secondaryHexagram} />
-                                                </div>
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                            ) : (
-                                <div className="no-selection">
-                                    <div className="selection-placeholder">
-                                        <div className="placeholder-icon">👈</div>
-                                        <h4>选择历史记录</h4>
-                                        <p>点击左侧的历史记录查看详细信息</p>
-                                    </div>
-                                </div>
-                            )}
                             </div>
                         </div>
                     </div>

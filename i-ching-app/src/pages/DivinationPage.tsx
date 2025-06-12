@@ -118,62 +118,7 @@ const DivinationPage: React.FC = () => {
                     subtitle="诚心求卦，静心思考你想要了解的问题，然后选择占卜方式："
                 />
                 
-                <ContentSection icon="❓" title="您的问题">
-                    <div className="question-input">
-                        <label htmlFor="question">您的问题（可选）：</label>
-                        <textarea
-                            id="question"
-                            value={question}
-                            onChange={(e) => setQuestion(e.target.value)}
-                            placeholder="请输入您想要询问的问题..."
-                            rows={3}
-                            disabled={isDrawing}
-                        />
-                    </div>
-                </ContentSection>
-
-                <ContentSection icon="🔮" title="占卜方式">
-                    <div className="divination-buttons">
-                        <Button 
-                            onClick={handleQuickDivination} 
-                            disabled={isDrawing}
-                            variant="primary"
-                            className="divination-btn quick"
-                        >
-                            {isDrawing ? "正在求卦..." : "📿 快速占卜"}
-                        </Button>
-                        
-                        <Button 
-                            onClick={handleCoinDivination} 
-                            disabled={isDrawing}
-                            variant="secondary"
-                            className="divination-btn coin"
-                        >
-                            {isDrawing ? "投掷硬币中..." : "🪙 三币占卜"}
-                        </Button>
-
-                        <Button 
-                            onClick={handleYarrowDivination} 
-                            disabled={isDrawing}
-                            variant="outline"
-                            className="divination-btn yarrow"
-                        >
-                            {isDrawing ? "蓍草演算中..." : "🌾 蓍草占卜"}
-                        </Button>
-                    </div>
-
-                    <div className="method-descriptions">
-                        <div className="method-desc">
-                            <strong>📿 快速占卜：</strong>简单快速，适合日常使用
-                        </div>
-                        <div className="method-desc">
-                            <strong>🪙 三币占卜：</strong>传统方法，有机会产生变爻
-                        </div>
-                        <div className="method-desc">
-                            <strong>🌾 蓍草占卜：</strong>最传统方法，变爻概率更符合古法
-                        </div>
-                    </div>
-                </ContentSection>                {isDrawing && (
+                {isDrawing && (
                     <ContentSection icon="⏳" title="占卜中">
                         <div className="drawing-animation">
                             <p>🔮 天机运转中，请稍候...</p>
@@ -221,9 +166,45 @@ const DivinationPage: React.FC = () => {
                                 }</small>
                             </div>
                         </div>
-                    </ContentSection>
-                )}
+                    </ContentSection>                )}
+                
+                <div className="question-input">
+                    <label htmlFor="question">您的问题（可选）：</label>
+                    <textarea
+                        id="question"
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                        placeholder="请输入您想要询问的问题..."
+                        rows={3}
+                        disabled={isDrawing}
+                    />                </div>
 
+                <div className="divination-buttons">
+                    <Button 
+                        onClick={handleQuickDivination} 
+                        disabled={isDrawing}
+                        variant="primary"
+                        className="divination-btn quick"
+                    >
+                        {isDrawing ? "正在求卦..." : "📿 快速占卜"}
+                    </Button>
+                    
+                    <Button 
+                        onClick={handleCoinDivination} 
+                        disabled={isDrawing}
+                        variant="secondary"
+                        className="divination-btn coin"
+                    >
+                        {isDrawing ? "投掷硬币中..." : "🪙 三币占卜"}
+                    </Button>                    <Button 
+                        onClick={handleYarrowDivination} 
+                        disabled={isDrawing}
+                        variant="outline"
+                        className="divination-btn yarrow"
+                    >
+                        {isDrawing ? "蓍草演算中..." : "🌾 蓍草占卜"}
+                    </Button>
+                </div>
 
             </div>
         </div>
