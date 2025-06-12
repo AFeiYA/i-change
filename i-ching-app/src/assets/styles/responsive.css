@@ -111,7 +111,7 @@
   }
   
   .hexagram-grid {
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
 

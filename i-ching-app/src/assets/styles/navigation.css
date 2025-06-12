@@ -58,8 +58,21 @@
 /* Mobile navigation */
 @media (max-width: 768px) {
   .nav ul {
+    display: none; /* Hide by default on mobile */
     flex-direction: column;
     padding: var(--spacing-sm) 0;
+    width: 100%; /* Ensure it takes full width when open */
+    background-color: var(--bg-secondary); /* Add a background for when it's a dropdown */
+    position: absolute; /* Position it for overlay effect */
+    top: 100%; /* Position below the nav bar (assuming nav bar height) */
+    left: 0;
+    right: 0;
+    z-index: 999; /* Ensure it's above other content */
+    box-shadow: 0 4px 8px var(--shadow); /* Add some shadow */
+  }
+
+  .nav ul.nav-ul--open { /* Hypothetical class toggled by JS */
+    display: flex;
   }
 
   .nav li {
