@@ -18,20 +18,9 @@ const Navigation: React.FC = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-  const handleMenuItemClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    // Add click animation class
-    const target = event.currentTarget;
-    target.style.transform = 'translateX(-12px) scale(0.95)';
-    
-    // Reset animation after a short delay, then close menu
-    setTimeout(() => {
-      target.style.transform = '';
-      // Close menu after animation
-      setTimeout(() => {
-        setIsMenuOpen(false);
-      }, 150);
-    }, 100);
+  const handleMenuItemClick = () => {
+    // 直接关闭菜单，播放退出动画
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
