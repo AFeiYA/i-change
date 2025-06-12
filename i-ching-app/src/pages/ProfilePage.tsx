@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { SoundEffects } from '../utils/soundEffects';
 import { 
+    PageHeader, 
+    StatCard,
+    Button,
+    BackgroundDecoration 
+} from '../components/common';
+import { 
     getUserStats, 
     getUserPreferences, 
     saveUserPreferences, 

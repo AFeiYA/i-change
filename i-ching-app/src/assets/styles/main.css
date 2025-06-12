@@ -10,6 +10,8 @@
 @import './hexagram-detail.css'; /* Retained for safety, review in step 3/4 */
 @import './modal.css'; /* Modal component styles */
 @import './page-animations.css'; /* Page entrance animations */
+@import './common-components.css'; /* Common reusable components */
+@import './notifications.css'; /* Notification system styles */
 
 /* Core global styles (body, h1-h3, a, .container) were moved to base-styles.css */
 
@@ -171,7 +173,7 @@
 }
 
 .relation-btn.inverse::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -50%;
     left: -50%;

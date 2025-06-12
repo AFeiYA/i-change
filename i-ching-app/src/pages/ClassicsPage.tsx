@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { hexagrams } from '../data/hexagrams';
+import { PageHeader, ContentSection, BackgroundDecoration } from '../components/common';
 
 const ClassicsPage: React.FC = () => {
     return (
         <div className="container">
+            <BackgroundDecoration symbols={['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷']} />
             <div className="page-container classics-page">
-                <div className="page-header">
-                    <h1>📚 易经六十四卦</h1>
-                    <p>探索易经的经典卦象，了解古老的智慧</p>
-                </div>
+                <PageHeader 
+                    icon="📚"
+                    title="易经六十四卦"
+                    subtitle="探索易经的经典卦象，了解古老的智慧"
+                />
                 
-                <div className="content-sections">
+                <ContentSection icon="🔮" title="六十四卦一览">
                     <div className="hexagram-grid">
                         {hexagrams.map((hexagram, index) => (
                             <Link 
@@ -39,7 +42,7 @@ const ClassicsPage: React.FC = () => {
                             </Link>
                         ))}
                     </div>
-                </div>
+                </ContentSection>
             </div>
         </div>
     );

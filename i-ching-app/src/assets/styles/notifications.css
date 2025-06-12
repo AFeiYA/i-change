@@ -1,0 +1,165 @@
+/* 通知系统样式 */
+.notification-container {
+  position: fixed;
+  top: 100px;
+  right: var(--spacing-lg);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 400px;
+  pointer-events: none;
+}
+
+.notification-toast {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid var(--border-color);
+  animation: slideInFromRight 0.3s ease-out;
+  pointer-events: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.notification-toast::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.notification-success::before {
+  background: var(--color-success);
+}
+
+.notification-error::before {
+  background: var(--color-danger);
+}
+
+.notification-warning::before {
+  background: var(--color-warning);
+}
+
+.notification-info::before {
+  background: var(--color-info);
+}
+
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.notification-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.notification-text {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.notification-message {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.notification-action {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: var(--spacing-sm);
+  transition: background 0.2s ease;
+}
+
+.notification-action:hover {
+  background: var(--primary-color-dark);
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: var(--spacing-sm);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.notification-close:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .notification-container {
+    left: var(--spacing-md);
+    right: var(--spacing-md);
+    max-width: none;
+  }
+  
+  .notification-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .notification-title {
+    font-size: 0.9rem;
+  }
+  
+  .notification-message {
+    font-size: 0.85rem;
+  }
+}
+
+/* 深色主题适配 */
+[data-theme="dark"] .notification-toast {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* 动画进出效果 */
+.notification-toast.removing {
+  animation: slideOutToRight 0.3s ease-out forwards;
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
